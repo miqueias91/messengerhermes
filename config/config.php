@@ -4,6 +4,7 @@
 
 	$base 			="C:/xampp/htdocs/messengerhermes";
 	$base 			="/var/www/html/messengerhermes";
+	$base_http 		= "http://localhost/html/messengerhermes";
 	$base_http 		= "http://localhost/messengerhermes";
 
 	$PATH_BASE_HTTP = $base_http;

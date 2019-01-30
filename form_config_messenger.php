@@ -1,5 +1,13 @@
 <?php
 	include_once("./config/config.php");
+    include_once("$base/class/class.messenger.php");
+
+    session_start();
+    $_SESSION["token_user"] = '98f87249998b1a2991d346c96ddc9e1a';
+
+    $msn = new Messenger();
+    $arrayMessenger = $msn->buscaPeriodoMessenger(null, null, null, null, null, null, null, $_SESSION["token_user"]);
+
 ?>
 
 <!doctype html>
@@ -27,17 +35,90 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
+    <script type="text/javascript">
+        function removeMessenger(id_messenger) {
+            if(confirm('Deseja realmente excluir?')){
+                $("#form").attr('action','delete_messenger.php?id_messenger='+id_messenger+'&token_user=<?=$_SESSION["token_user"]?>');
+                $("#form").submit();
+                return true;
+            }
+            return false;
+        }
+        function editMessenger(id_messenger) {
+            $("#form").attr('action','edit_messenger.php?id_messenger='+id_messenger+'&token_user=<?=$_SESSION["token_user"]?>');
+            $("#form").submit();
+            return true;
+        }
+        $( document ).ready(function() {
+            $('#inserir').click(function(){
+                $("#form").attr('action','insert_messenger.php');
+                $("#form").submit();
+                return true;
+            });
+        });
+    </script>
+
     <title>MESSENGER HERMES</title>
   </head>
   <body>
     <?php include_once("./menu.php");?>
-    <div class="main container">
-	    <div class="alert alert-danger" role="alert">
-	    	<center>	    		
-				Nenhuma mensagem encontrada! Deseja <a href="./insert_messenger.php">incluir?</a>
-	    	</center>
-		</div>
-    	
+
+        <div class="main container">
+        <h1>| GERENCIAR MENSAGEM<button style="cursor:pointer; float: right;" title="Incluir Mensagem" class="btn btn-outline-secondary" id="inserir" type="button"><i class="fas fa-plus-square"></i> Incluir Mensagem</button></h1>
+
+        <form method=post name='form' id='form' enctype='multipart/form-data' action="form_config_messenger.php">
+            <input type="hidden" name="token_user" value="<?=$_SESSION['token_user']?>">
+        <?php
+            if ($arrayMessenger) {
+        ?>
+
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">AÇÃO</th>
+                            <th scope="col">CÓDIGO MENSAGEM</th>
+                            <th scope="col">ASSUNTO</th>
+                            <th scope="col">DATA INÍCIAL</th>
+                            <th scope="col">DATA FINAL</th>
+                            <th scope="col">HORÁRIO</th>
+                        </tr>
+                      </thead>
+                    <tbody>
+        <?php
+                    foreach ($arrayMessenger as $row) {
+        ?>    
+                        <tr>
+                          <th scope="row">
+                            <button onClick="removeMessenger('<?=$row["id_messenger"]?>')" style="cursor:pointer" title="Excluir" class="btn btn-outline-secondary" type="button"><i class="fas fa-trash-alt"></i> Excluir</button> 
+                            <button onClick="editMessenger('<?=$row["id_messenger"]?>')" style="cursor:pointer" title="Editar" class="btn btn-outline-secondary" type="button"><i class="fas fa-pen-square"></i> Editar</button></th>
+                          <td><?= str_pad($row['id_messenger'],7,'0', STR_PAD_LEFT)?></td>
+                          <td><?=$row['assunto']?></td>
+                          <td><?=date("d/m/Y", strtotime($row['data_inicio']))?></td>
+                          <td><?=date("d/m/Y", strtotime($row['data_final']))?></td>
+                          <td><?=date("H:i", strtotime($row['horario']))?></td>
+                        </tr>                      
+        <?php
+          
+                    }
+        ?>
+                    </tbody>
+                </table>
+        <?php
+          
+            }else{
+
+        ?>
+        <div class="alert alert-danger" role="alert">
+            <center>                
+                Nenhuma mensagem cadastrado! Deseja <a href="./insert_messenger.php">cadastrar?</a>
+            </center>
+        </div>
+        <?php
+          
+            }           
+        ?>
+        
+        </form>
     </div>
 
 

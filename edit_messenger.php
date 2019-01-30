@@ -1,12 +1,22 @@
 <?php
-	include_once("./config/config.php");
+    include_once("./config/config.php");
+    include_once("$base/class/class.messenger.php");
 
     session_start();
-    $_SESSION["id_usuario"] = 1;
-    $_SESSION["usuario"] = 'miqueiasm91';
-    $_SESSION["email"] = 'miqueiasmcaetano';
-    $_SESSION["nome_usuario"] = 'Miqueias Matias';
     $_SESSION["token_user"] = '98f87249998b1a2991d346c96ddc9e1a';
+
+    $msn = new Messenger();
+    $arrayMessenger = $msn->buscaPeriodoMessenger($id_messenger, null, null, null, null, null, null, $token_user);
+    $arrayMessenger = $arrayMessenger[0];
+
+    $horario = explode(":", $arrayMessenger['horario']);
+    $hrs = $horario[0];
+    $mnt = $horario[1];
+    $mensagem = file_get_contents("$base/$arrayMessenger[mensagem]");
+
+    $arrayDestinatarios = $msn->buscaMessengerDestinatario($id_messenger);
+    $numDest = count($arrayDestinatarios);
+
 
     $min = 0;
     $option_min = "";
@@ -45,13 +55,16 @@
     <script src="js/jquery-ui.js"></script>
 
     <script type="text/javascript">
+
         function removeEmail(i){
             $('#linha'+i).remove();
         }
         $( document ).ready(function() {
-            var num_email = 0;
+            $("#hora").val("<?=$hrs?>");
+            $("#minuto").val("<?=$mnt?>");
+
+            var num_email = "<?=$numDest?>";
             $('#maisemail').click(function(){
-                num_email++;
                 $('#grupoemail').append(
                     '<div style="margin-bottom:10px" class="input-group flex-nowrap" id="linha'+num_email+'">'+
                       '<div class="input-group-prepend">'+
@@ -70,6 +83,7 @@
                         $(this).val(ui.item.value);
                     }
                 });
+                num_email++;
             });
 
             var num_gpo = 0;
@@ -154,11 +168,11 @@
                 <div class="row">
                     <div class="col-md-4">                        
                         <label for="datainicio">Data Inícial de Envio</label>
-                        <input name="data_inicio" type="text" class="form-control data" id="datainicio" placeholder="DD/MM/AAAA" required>
+                        <input name="data_inicio" type="text" class="form-control data" id="datainicio" placeholder="DD/MM/AAAA" required value="<?=date("d/m/Y", strtotime($arrayMessenger['data_inicio']))?>">
                     </div>
                     <div class="col-md-4">                        
                         <label for="datafinal">Data Final de Envio</label>
-                        <input name="data_final" type="text" class="form-control data" id="datafinal" placeholder="DD/MM/AAAA" required>
+                        <input name="data_final" type="text" class="form-control data" id="datafinal" placeholder="DD/MM/AAAA" required value="<?=date("d/m/Y", strtotime($arrayMessenger['data_final']))?>">
                     </div>
                     <div class="col-md-4">                        
                         <label for="horario">Horário de Envio</label>
@@ -202,7 +216,7 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput0">Assunto</label>
-                <input name="assunto" type="text" class="form-control" id="exampleFormControlInput0" placeholder="Digite aqui o assunto do e-mail..." required>
+                <input name="assunto" type="text" class="form-control" id="exampleFormControlInput0" placeholder="Digite aqui o assunto do e-mail..." required value="<?=$arrayMessenger['assunto']?>">
             </div>
 
             <div class="form-group">
@@ -212,16 +226,36 @@
                   //]]>
                   </script>
                 <label for="mensagem">Mensagem</label>
-                <textarea name="mensagem" class="form-control" id="mensagem" rows="10"></textarea>
+                <textarea name="mensagem" class="form-control" id="mensagem" rows="10"><?=$mensagem?></textarea>
             </div>
 
             <div id="grupoemail">
               <div class="form-group">
                 <label for="destinatario0">Destinatário</label>
 
-                <input type="text" linha='0' class="form-control destinatario" id="email_destinatario0" placeholder="name@example.com">
-
-                <input type="hidden" name="destinatario[]" class="form-control" id="iddestinatario0">
+                <?php
+                    if ($arrayDestinatarios) {
+                        foreach ($arrayDestinatarios as $key => $row) {
+                            if ($key == 0) {          
+                ?>  
+                                <input type="text" linha='0' class="form-control destinatario" id="email_destinatario0" placeholder="name@example.com" value="<?=str_pad($row['id_destinatario'],7,'0', STR_PAD_LEFT)?> | <?=$row['email_destinatario']?>">
+                                <input type="hidden" name="destinatario[]" class="form-control" id="iddestinatario0" value="<?=$row['id_destinatario']?>">
+                <?php
+                            }       
+                            else{                                
+                ?> 
+                                <div style="margin-top:10px" class="input-group flex-nowrap" id="linha<?=$key?>">
+                                    <div class="input-group-prepend">
+                                        <span onClick="removeEmail(<?=$key?>)" style="cursor:pointer" title="Excluir" class="input-group-text"><i class="fas fa-trash-alt"></i></span>
+                                    </div>
+                                    <input linha="<?=$key?>" type="text" class="form-control destinatario" id="email_destinatario<?=$key?>" placeholder="name@example.com" value="<?=str_pad($row['id_destinatario'],7,'0', STR_PAD_LEFT)?> | <?=$row['email_destinatario']?>">
+                                    <input name="destinatario[]" type="hidden" class="form-control" id="iddestinatario<?=$key?>" value="<?=$row['id_destinatario']?>">
+                                </div>
+                <?php
+                            }
+                        }
+                    }
+                ?>
               </div>
             </div>
 
@@ -238,7 +272,7 @@
             <button title="Adicionar E-mail" id="maisemail" class="btn btn-outline-secondary" type="button"><i class="fas fa-plus-circle"></i> Adicionar E-mail</button>
             <button title="Adicionar Grupo" id="maisgrupo" class="btn btn-outline-secondary" type="button"><i class="fas fa-plus-circle"></i> Adicionar Grupo</button>
 
-            <button title="Enviar" id="enviar" class="btn btn-outline-secondary" type="submit"><i class="fas fa-check-circle"></i> Enviar</button>
+            <button title="Salvar Alterações" id="enviar" class="btn btn-outline-secondary" type="submit"><i class="fas fa-check-circle"></i> Salvar Alterações</button>
         </form>
             	
     </div>

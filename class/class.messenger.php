@@ -51,6 +51,21 @@
 	        }
 		}
 
+		public function excluirMessenger($id_messenger, $token_user) {
+	        try {
+		            $sql = "DELETE 
+		            		FROM messenger 
+		            		WHERE id_messenger = :id_messenger AND token_user = :token_user ";
+		            $pdo = Conexao::getInstance()->prepare($sql);
+			        $pdo->bindValue(':id_messenger', $id_messenger, PDO::PARAM_INT);
+			        $pdo->bindValue(':token_user', $token_user, PDO::PARAM_INT);
+			        $pdo->execute();
+	        } 
+	        catch (Exception $e) {
+	            echo "<br>".$e->getMessage();
+	        }
+	    }
+
 		public function buscaMessenger($idmessenger = null, $data_inicio = null, $data_final = null, $horario = null, $assunto = null, $mensagem = null, $token_user = null){
 			$filtro = "";
 			$filtro .= isset($idmessenger) ? " AND id_messenger = :idmessenger" : "";
