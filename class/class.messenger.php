@@ -51,7 +51,39 @@
 	        }
 		}
 
-		public function excluirMessenger($id_messenger, $token_user) {
+		public function alteraMessenger($id_messenger, $data_inicio, $data_final, $horario, $assunto, $mensagem, $token_user, $destinatario_grupo){
+			try {
+	            $sql = "UPDATE messenger
+	            	SET
+	                data_inicio = :data_inicio,
+					data_final = :data_final,
+					horario = :horario,
+					assunto = :assunto,
+					mensagem = :mensagem,
+					token_user = :token_user
+
+					WHERE id_messenger = :id_messenger
+	                ";
+	            $pdo = Conexao::getInstance()->prepare($sql);
+	            $pdo->bindValue(":id_messenger", $id_messenger, PDO::PARAM_INT);
+	            $pdo->bindValue(":data_inicio", $data_inicio, PDO::PARAM_STR);
+	            $pdo->bindValue(":data_final", $data_final, PDO::PARAM_STR);
+	            $pdo->bindValue(":horario", $horario, PDO::PARAM_STR);
+	            $pdo->bindValue(":assunto", $assunto, PDO::PARAM_STR);
+	            $pdo->bindValue(":mensagem", $mensagem, PDO::PARAM_STR);
+	            $pdo->bindValue(":token_user", $token_user, PDO::PARAM_STR);
+	            $pdo->execute();
+
+				foreach ($destinatario_grupo as $row) {
+				    $this->cadastraMessengerDestinatario($id_messenger, $row);
+				}
+	        } 
+	        catch (Exception $e) {
+	            echo "<br>".$e->getMessage();
+	        }
+		}
+
+		public function excluiMessenger($id_messenger, $token_user) {
 	        try {
 		            $sql = "DELETE 
 		            		FROM messenger 
@@ -200,6 +232,20 @@
 	            echo "<br>".$e->getMessage();
 	        }
 		}
+
+		public function excluiMessengerDestinatario($id_messenger) {
+	        try {
+		            $sql = "DELETE 
+		            		FROM messenger_destinatario 
+		            		WHERE id_messenger = :id_messenger";
+		            $pdo = Conexao::getInstance()->prepare($sql);
+			        $pdo->bindValue(':id_messenger', $id_messenger, PDO::PARAM_INT);
+			        $pdo->execute();
+	        } 
+	        catch (Exception $e) {
+	            echo "<br>".$e->getMessage();
+	        }
+	    }
 
 		public function buscaMessengerDestinatario($id_messenger = null){
 			$filtro = "";

@@ -63,8 +63,10 @@
             $("#hora").val("<?=$hrs?>");
             $("#minuto").val("<?=$mnt?>");
 
-            var num_email = "<?=$numDest?>";
+            var num_email = "<?=$numDest -  1?>";
             $('#maisemail').click(function(){
+                num_email++;
+
                 $('#grupoemail').append(
                     '<div style="margin-bottom:10px" class="input-group flex-nowrap" id="linha'+num_email+'">'+
                       '<div class="input-group-prepend">'+
@@ -83,7 +85,6 @@
                         $(this).val(ui.item.value);
                     }
                 });
-                num_email++;
             });
 
             var num_gpo = 0;
@@ -162,9 +163,18 @@
     <div class="main container">
         <h1>| CADASTRAR MENSAGEM</h1>
 
-        <form method=post name='form' id='form' enctype='multipart/form-data' action="register_messenger.php">
+        <form method=post name='form' id='form' enctype='multipart/form-data' action="update_messenger.php">
             <input type="hidden" name="token_user" value="<?=$_SESSION['token_user']?>">
+            <input type="hidden" name="id_messenger" value="<?=$id_messenger?>">
+            <input type="hidden" name="caminho" value="<?=$arrayMessenger['mensagem']?>">
             <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4">   
+                        <label>CÓDIGO MENSAGEM</label>                     
+                        <input disabled type="text" class="form-control" value="<?= str_pad($arrayMessenger['id_messenger'],7,'0', STR_PAD_LEFT)?>">
+                    </div>
+                </div>
+                <br>
                 <div class="row">
                     <div class="col-md-4">                        
                         <label for="datainicio">Data Inícial de Envio</label>

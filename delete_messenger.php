@@ -4,7 +4,7 @@
 
     $msn = new Messenger();
 
-	$msn->excluirMessenger($id_messenger, $token_user);
+	$msn->excluiMessenger($id_messenger, $token_user);
 
 	echo "<script>alert('Registro excluido com sucesso.'); window.location.href = './form_config_messenger.php';</script>";
 
