@@ -75,7 +75,7 @@
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">AÇÃO</th>
+                            <th class="text-center" scope="col">AÇÃO</th>
                             <th scope="col">CÓDIGO MENSAGEM</th>
                             <th scope="col">ASSUNTO</th>
                             <th scope="col">DATA INÍCIAL</th>

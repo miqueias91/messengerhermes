@@ -74,7 +74,7 @@
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">AÇÃO</th>
+                            <th class="text-center" scope="col">AÇÃO</th>
                             <th scope="col">CÓDIGO DESTINATÁRIO</th>
                             <th scope="col">NOME</th>
                             <th scope="col">E-MAIL</th>

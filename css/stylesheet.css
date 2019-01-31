@@ -4,3 +4,10 @@
 .main {
 	margin-top: 20px;
 }
+.bg-light {
+    background-color: #6c757d!important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #fff!important;
+}
