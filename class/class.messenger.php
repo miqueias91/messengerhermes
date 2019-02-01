@@ -174,7 +174,7 @@
 	                WHERE id_messenger > :id_messenger
 	                $filtro
 	                group by id_messenger
-					ORDER BY data_final, horario, id_messenger
+					ORDER BY data_final desc
 	            ";
 
 	            $pdo = Conexao::getInstance()->prepare($sql);
@@ -210,6 +210,41 @@
 	         
 	            $pdo->execute();
 	            return $pdo->fetchAll(PDO::FETCH_BOTH);
+	        } 
+	        catch (Exception $e) {
+	            echo "<br>".$e->getMessage();
+	        }
+		}
+
+		public function inativaMessengerAutomatico($data_final = null, $horario = null, $status = 'ativo'){
+			
+
+			$filtro = "";
+			$filtro .= isset($data_final) ? " AND data_final < :data_final " : "";
+			$filtro .= isset($horario) ? " AND horario < :horario " : "";
+			$filtro .= isset($status) ? " AND status = :status " : "";			
+
+			try {
+	            $sql = "UPDATE messenger
+	            	SET status = :status_inativo
+	                WHERE id_messenger > :id_messenger
+	                $filtro
+	            ";
+
+	            $pdo = Conexao::getInstance()->prepare($sql);
+				
+	            $pdo->bindValue(':id_messenger', 0, PDO::PARAM_INT);
+	            $pdo->bindValue(":status_inativo", "inativo", PDO::PARAM_STR);
+	           	if ($data_final) {
+		            $pdo->bindValue(':data_final', $data_final, PDO::PARAM_STR);
+	            }     	
+	           	if ($horario) {
+		            $pdo->bindValue(':horario', $horario, PDO::PARAM_STR);
+	            }
+	            if ($status) {
+	            	$pdo->bindValue(":status", $status, PDO::PARAM_STR);
+	            }	         
+	            $pdo->execute();
 	        } 
 	        catch (Exception $e) {
 	            echo "<br>".$e->getMessage();

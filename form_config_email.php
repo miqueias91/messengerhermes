@@ -88,9 +88,11 @@
                           <th scope="row">
                             <button onClick="removeDestinatario('<?=$row["id_destinatario"]?>')" style="cursor:pointer" title="Excluir" class="btn btn-outline-secondary" type="button"><i class="fas fa-trash-alt"></i> Excluir</button> 
                             <button onClick="editDestinatario('<?=$row["id_destinatario"]?>')" style="cursor:pointer" title="Editar" class="btn btn-outline-secondary" type="button"><i class="fas fa-pen-square"></i> Editar</button></th>
-                          <td><?= str_pad($row['id_destinatario'],7,'0', STR_PAD_LEFT)?></td>
-                          <td><?=$row['nome_destinatario']?></td>
-                          <td><?=$row['email_destinatario']?></td>
+                          <td title="<?= str_pad($row['id_destinatario'],7,'0', STR_PAD_LEFT)?>"><?= str_pad($row['id_destinatario'],7,'0', STR_PAD_LEFT)?></td>
+
+                          <td title="<?=$row['nome_destinatario']?>"><?=$row['nome_destinatario']?></td>
+                          
+                          <td title="<?=$row['email_destinatario']?>"><?=$row['email_destinatario']?></td>
                         </tr>                      
         <?php
           
