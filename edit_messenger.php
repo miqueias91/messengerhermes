@@ -170,10 +170,10 @@
             <input type="hidden" name="caminho" value="<?=$arrayMessenger['mensagem']?>">
             <div class="form-group">
                 <div class="row">
-                    <div class="col-md-4">   
+                    <!--<div class="col-md-4">   
                         <label>CÓDIGO MENSAGEM</label>                     
                         <input disabled type="text" class="form-control" value="<?= str_pad($arrayMessenger['id_messenger'],7,'0', STR_PAD_LEFT)?>">
-                    </div>
+                    </div>-->
                     <div class="col-md-4">   
                         <label>STATUS</label>   
                             <select class="form-control" id="status" name="status">

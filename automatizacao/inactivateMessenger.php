@@ -6,6 +6,6 @@
 
   	$msn = new Messenger();
 
-    $periodo_data = date("Y-m-d");
-    $horario = date("H:i");
+    $periodo_data =date("Y-m-d");
+    $horario =date("H:i",strtotime("-60 minutes"));
     $arrayMessenger = $msn->inativaMessengerAutomatico($periodo_data, $horario);

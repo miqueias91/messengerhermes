@@ -76,7 +76,7 @@
                     <thead class="thead-dark">
                         <tr>
                             <th class="text-center" scope="col">AÇÃO</th>
-                            <th scope="col">CÓDIGO MENSAGEM</th>
+                            <!--<th scope="col">CÓDIGO MENSAGEM</th>-->
                             <th scope="col">ASSUNTO</th>
                             <th scope="col">DATA INÍCIAL</th>
                             <th scope="col">DATA FINAL</th>
@@ -91,7 +91,7 @@
                           <th scope="row">
                             <button onClick="removeMessenger('<?=$row["id_messenger"]?>')" style="cursor:pointer" title="Excluir" class="btn btn-outline-secondary" type="button"><i class="fas fa-trash-alt"></i> Excluir</button> 
                             <button onClick="editMessenger('<?=$row["id_messenger"]?>')" style="cursor:pointer" title="Editar" class="btn btn-outline-secondary" type="button"><i class="fas fa-pen-square"></i> Editar</button></th>
-                          <td title="<?= str_pad($row['id_messenger'],7,'0', STR_PAD_LEFT)?>"><?= str_pad($row['id_messenger'],7,'0', STR_PAD_LEFT)?></td>
+                          <!--<td title="<?= str_pad($row['id_messenger'],7,'0', STR_PAD_LEFT)?>"><?= str_pad($row['id_messenger'],7,'0', STR_PAD_LEFT)?></td>-->
 
                           <td title="<?=$row['assunto']?>"><?=$row['assunto']?></td>
 
