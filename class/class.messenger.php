@@ -151,7 +151,10 @@
 		}
 
 
-		public function buscaPeriodoMessenger($idmessenger = null, $data_inicio = null, $data_final = null, $periodo_data = null, $horario = null, $assunto = null, $mensagem = null, $token_user = null){
+		public function buscaPeriodoMessenger($idmessenger = null, $data_inicio = null, $data_final = null, $periodo_data = null, $horario = null, $assunto = null, $mensagem = null, $token_user = null, $status = 'ativo'){
+			
+			$status = $status == 'todos' ? null : $status;
+
 			$filtro = "";
 			$filtro .= isset($idmessenger) ? " AND id_messenger = :idmessenger" : "";
 			$filtro .= isset($data_inicio) ? " AND data_inicio = :data_inicio" : "";
@@ -161,6 +164,7 @@
 			$filtro .= isset($assunto) ? " AND assunto = :assunto" : "";
 			$filtro .= isset($mensagem) ? " AND mensagem = :mensagem" : "";
 			$filtro .= isset($token_user) ? " AND token_user = :token_user" : "";			
+			$filtro .= isset($status) ? " AND status = :status" : "";			
 
 			try {
 	            $sql = "SELECT *
@@ -169,7 +173,7 @@
 	                WHERE id_messenger > :id_messenger
 	                $filtro
 	                group by id_messenger
-					ORDER BY id_messenger
+					ORDER BY data_final, horario, id_messenger
 	            ";
 
 	            $pdo = Conexao::getInstance()->prepare($sql);
@@ -198,6 +202,9 @@
 	            }
 	           	if ($token_user) {
 		            $pdo->bindValue(':token_user', $token_user, PDO::PARAM_STR);
+	            }
+	            if ($status) {
+		            $pdo->bindValue(':status', $status, PDO::PARAM_STR);
 	            }
 	         
 	            $pdo->execute();
