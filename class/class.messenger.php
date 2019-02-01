@@ -51,17 +51,17 @@
 	        }
 		}
 
-		public function alteraMessenger($id_messenger, $data_inicio, $data_final, $horario, $assunto, $mensagem, $token_user, $destinatario_grupo){
+		public function alteraMessenger($id_messenger, $data_inicio, $data_final, $horario, $assunto, $mensagem, $token_user, $destinatario_grupo, $status){
 			try {
 	            $sql = "UPDATE messenger
 	            	SET
-	                data_inicio = :data_inicio,
-					data_final = :data_final,
-					horario = :horario,
-					assunto = :assunto,
-					mensagem = :mensagem,
-					token_user = :token_user
-
+		                data_inicio = :data_inicio,
+						data_final 	= :data_final,
+						horario 	= :horario,
+						assunto 	= :assunto,
+						mensagem 	= :mensagem,
+						token_user 	= :token_user,
+						status 		= :status
 					WHERE id_messenger = :id_messenger
 	                ";
 	            $pdo = Conexao::getInstance()->prepare($sql);
@@ -72,6 +72,7 @@
 	            $pdo->bindValue(":assunto", $assunto, PDO::PARAM_STR);
 	            $pdo->bindValue(":mensagem", $mensagem, PDO::PARAM_STR);
 	            $pdo->bindValue(":token_user", $token_user, PDO::PARAM_STR);
+	            $pdo->bindValue(":status", $status, PDO::PARAM_STR);
 	            $pdo->execute();
 
 				foreach ($destinatario_grupo as $row) {

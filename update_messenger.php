@@ -74,13 +74,21 @@
 
 		$caminho_mensagem = "/tmp/messenger_$token_user"."_".date('YmdHis').".html";
 		$msn->excluiMessengerDestinatario($id_messenger);
-  		$msn->alteraMessenger($id_messenger, $data_inicio, $data_final, $horario, $assunto, $caminho_mensagem, $token_user, $arrayDestinatario);
+  		$msn->alteraMessenger($id_messenger, $data_inicio, $data_final, $horario, $assunto, $caminho_mensagem, $token_user, $arrayDestinatario, $status);
 
 		$fp = fopen("./".$caminho_mensagem, 'a');
 		fwrite($fp, $mensagem);
 		fclose($fp);
 
-		echo "<script>alert('Mensagem alterada com sucesso.'); window.location.href = './edit_messenger.php?id_messenger=$id_messenger&token_user=$token_user';</script>";
+		if ($status == 'ativo') {
+			echo "<script>alert('Mensagem alterada com sucesso.'); window.location.href = './edit_messenger.php?id_messenger=$id_messenger&token_user=$token_user';</script>";
+		}
+		else {			
+			echo "<script>alert('Mensagem alterada com sucesso.'); window.location.href = './form_config_messenger.php';</script>";
+		}
+
+
+
 		die;
 	}
 

@@ -62,6 +62,7 @@
         $( document ).ready(function() {
             $("#hora").val("<?=$hrs?>");
             $("#minuto").val("<?=$mnt?>");
+            $("#status").val("<?=$arrayMessenger['status']?>");
 
             var num_email = "<?=$numDest -  1?>";
             $('#maisemail').click(function(){
@@ -172,6 +173,13 @@
                     <div class="col-md-4">   
                         <label>CÓDIGO MENSAGEM</label>                     
                         <input disabled type="text" class="form-control" value="<?= str_pad($arrayMessenger['id_messenger'],7,'0', STR_PAD_LEFT)?>">
+                    </div>
+                    <div class="col-md-4">   
+                        <label>STATUS</label>   
+                            <select class="form-control" id="status" name="status">
+                                <option value="ativo">ATIVO</option>
+                                <option value="inativo">INATIVO</option>
+                            </select>                  
                     </div>
                 </div>
                 <br>
