@@ -49,6 +49,8 @@
             $('#destinatario_grupo'+i).remove();
         }
         $( document ).ready(function() {
+            $('#telefone').mask('(99) 9 9999-9999');
+
             var num_grupo = 0;
             $('#maisgrupo').click(function(){
                 num_grupo++;
@@ -92,7 +94,12 @@
                     $('#email_destinatario').css('border-color','');
                 }
 
-         
+                if ($('#telefone').val() == '') {
+                    $('#telefone').css('border-color','red');
+                    retorno = false;
+                }else{
+                    $('#telefone').css('border-color','');
+                }
 
             
 
@@ -129,7 +136,11 @@
                 <label for="email_destinatario">E-Mail</label>
                 <input type="email" name="email_destinatario" class="form-control" id="email_destinatario" placeholder="name@example.com">
             </div>
-            
+
+            <div class="form-group">
+                <label for="telefone">Telefone</label>
+                <input type="text" name="telefone" class="form-control" id="telefone">
+            </div> 
 
             <div id="grupoDestinatario">
                 <label for="grupo0">Grupo</label>

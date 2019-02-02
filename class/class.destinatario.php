@@ -196,19 +196,21 @@
 	        }
 	    }
 
-	    public function alterarDestinatario($id_destinatario, $nome_destinatario, $email_destinatario, $grupo, $token_user){
+	    public function alterarDestinatario($id_destinatario, $nome_destinatario, $email_destinatario, $grupo, $token_user, $telefone){
 
 			try {
 	            $sql = "UPDATE destinatario 
 	            	SET
 	                nome_destinatario		= :nome_destinatario,
 	                email_destinatario 		= :email_destinatario
+	                telefone 				= :telefone
 	                WHERE id_destinatario 	= :id_destinatario
 	                AND token_user 			= :token_user";
 
 	            $pdo = Conexao::getInstance()->prepare($sql);
 	            $pdo->bindValue(':nome_destinatario', $nome_destinatario, PDO::PARAM_STR);
 	            $pdo->bindValue(':email_destinatario', $email_destinatario, PDO::PARAM_STR);
+	            $pdo->bindValue(':telefone', $telefone, PDO::PARAM_STR);
 	            $pdo->bindValue(':id_destinatario', $id_destinatario, PDO::PARAM_INT);
 	            $pdo->bindValue(':token_user', $token_user, PDO::PARAM_INT);
 	            $pdo->execute();

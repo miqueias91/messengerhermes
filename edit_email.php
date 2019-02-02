@@ -60,6 +60,7 @@
         }
 
         $( document ).ready(function() {
+            $('#telefone').mask('(99) 9 9999-9999');
             <?php
                 if ($gruposDestinatario) {                    
                     foreach ($gruposDestinatario as $key => $row) {
@@ -108,7 +109,14 @@
                     retorno = false;
                 }else{
                     $('#email_destinatario').css('border-color','');
-                }            
+                }     
+
+                if ($('#telefone').val() == '') {
+                    $('#telefone').css('border-color','red');
+                    retorno = false;
+                }else{
+                    $('#telefone').css('border-color','');
+                }       
 
                 if (!retorno) {
                     alert('Existem campos não preenchidos!');
@@ -144,6 +152,11 @@
                 <label for="email_destinatario">E-Mail</label>
                 <input type="email" name="email_destinatario" class="form-control" id="email_destinatario" value="<?=$destinatario['email_destinatario']?>">
             </div>
+
+            <div class="form-group">
+                <label for="telefone">Telefone</label>
+                <input type="text" name="telefone" class="form-control" id="telefone" value="<?=$destinatario['telefone']?>">
+            </div> 
             
 
             <div id="grupoDestinatario">
