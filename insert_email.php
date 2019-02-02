@@ -1,8 +1,19 @@
 <?php
 	include_once("./config/config.php");
+    include_once("./class/class.grupo.php");
 
     session_start();
     $_SESSION["token_user"] = '98f87249998b1a2991d346c96ddc9e1a';
+
+    $gpo = new Grupo();
+
+    $grupos = $gpo->buscaGrupo(null, null, $token_user);
+    $options_gpo = "";      
+    if($grupos){
+        foreach ($grupos as $row) {
+            $options_gpo .= '<option value="'.$row['id_grupo'].'">'.$row['nome_grupo'].'</option>\\n';
+        }            
+    }
 ?>
 
 <!doctype html>
@@ -50,9 +61,7 @@
                       '</div>'+
                       '<select name="grupo[]" class="custom-select grupo" id="grupo'+num_grupo+'" aria-label="Example select with button addon">'+
                         '<option value="" selected>SELECIONE</option>'+
-                        '<option value="1">One</option>'+
-                        '<option value="2">Two</option>'+
-                        '<option value="3">Three</option>'+
+                        '<?=$options_gpo?>'+
                       '</select>'+
                     '</div>'
                 );
@@ -130,9 +139,7 @@
                 <div class="input-group mb-3">
                   <select name="grupo[]" class="custom-select grupo" id="grupo0">
                     <option value="" selected>SELECIONE</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <?=$options_gpo?>
                   </select>
                 </div>
             </div>

@@ -9,14 +9,15 @@
 
     $destinatarios = $des->buscaDestinatario($id_destinatario, null, null, null, $token_user);
     $gruposDestinatario = $des->buscaGrupoDestinatario(null, $id_destinatario);
-    $grupos = $gpo->buscaGrupo();
+
+    $grupos = $gpo->buscaGrupo(null, null, $token_user);
 
     $destinatario = $destinatarios[0];
 
     $options_gpo = "";      
     if($grupos){
-        foreach ($grupos as $row) {
-            $options_gpo .= '<option value="'.$row['id_grupo'].'">'.$row['nome_grupo'].'</option>\\n';
+        foreach ($grupos as $i) {
+            $options_gpo .= '<option value="'.$i['id_grupo'].'">'.$i['nome_grupo'].'</option>\\n';
         }            
     }
 ?>
@@ -61,7 +62,7 @@
             <?php
                 if ($gruposDestinatario) {                    
                     foreach ($gruposDestinatario as $key => $row) {
-                        echo "$('#grupo".$key."').val('".$row['grupo']."');";
+                        echo "$('#grupo".$key."').val('".$row['id_grupo']."');";
                     }
                 }
             ?>
@@ -75,7 +76,7 @@
                       '</div>'+
                       '<select name="grupo[]" class="custom-select grupo" id="grupo'+num_grupo+'" aria-label="Example select with button addon">'+
                         '<option value="" selected>SELECIONE</option>'+
-                        '<?php echo $options_gpo?>'+
+                        '<?=$options_gpo?>'+
                       '</select>'+
                     '</div>'
                 );

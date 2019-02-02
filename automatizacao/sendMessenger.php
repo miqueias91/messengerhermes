@@ -27,7 +27,7 @@
                 $email = new Email();
                 $email->AddCustomHeader("Content-type: text/html; charset=iso-8859-1");
                 $email->AddAddress($cada_destinatario['email_destinatario']);
-                $email->enviaEmail('newsletter.hermesmsn@gmail.com','Doctum@2014', $cada_destinatario['email_destinatario'], $assunto, $mensagem);
+                $email->enviaEmail($value['email_config'],$value['chave_config'], $cada_destinatario['email_destinatario'], $assunto, $mensagem);
                 $log = $cada_destinatario['email_destinatario'].",".date("Y-m-d").",".date("H:i:s")."\n";
 
             }

@@ -13,7 +13,7 @@
 	        try {
 		            $sql = "DELETE 
 		            		FROM destinatario_grupo 
-		            		WHERE id_destinatario_grupo = :id_destinatario";
+		            		WHERE id_destinatario = :id_destinatario";
 		            $pdo = Conexao::getInstance()->prepare($sql);
 			        $pdo->bindValue(':id_destinatario', $id_destinatario, PDO::PARAM_INT);
 			        $pdo->execute();
@@ -62,7 +62,7 @@
 	            $sql = "SELECT *
 
 	                FROM destinatario_grupo	gdo                             
-	                INNER JOIN grupo gpo ON gpo.id_grupo = gdo.id_destinatario_grupo
+	                INNER JOIN grupo gpo ON gpo.id_grupo = gdo.grupo
 	                INNER JOIN destinatario des ON des.id_destinatario = gdo.id_destinatario
 	                WHERE gdo.id_destinatario_grupo > :id_destinatario_grupo
 	                $filtro

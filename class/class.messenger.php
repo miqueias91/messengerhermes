@@ -157,24 +157,24 @@
 			$status = $status == 'todos' ? null : $status;
 
 			$filtro = "";
-			$filtro .= isset($idmessenger) ? " AND id_messenger = :idmessenger" : "";
-			$filtro .= isset($data_inicio) ? " AND data_inicio = :data_inicio" : "";
-			$filtro .= isset($data_final) ? " AND data_final = :data_final" : "";
-			$filtro .= isset($periodo_data) ? " AND ( :periodo_data >= data_inicio AND :periodo_data <= data_final ) " : "";
-			$filtro .= isset($horario) ? " AND horario = :horario" : "";
-			$filtro .= isset($assunto) ? " AND assunto = :assunto" : "";
-			$filtro .= isset($mensagem) ? " AND mensagem = :mensagem" : "";
-			$filtro .= isset($token_user) ? " AND token_user = :token_user" : "";			
-			$filtro .= isset($status) ? " AND status = :status" : "";			
+			$filtro .= isset($idmessenger) ? " AND msn.id_messenger = :idmessenger" : "";
+			$filtro .= isset($data_inicio) ? " AND msn.data_inicio = :data_inicio" : "";
+			$filtro .= isset($data_final) ? " AND msn.data_final = :data_final" : "";
+			$filtro .= isset($periodo_data) ? " AND ( :periodo_data >= msn.data_inicio AND :periodo_data <= msn.data_final ) " : "";
+			$filtro .= isset($horario) ? " AND msn.horario = :horario" : "";
+			$filtro .= isset($assunto) ? " AND msn.assunto = :assunto" : "";
+			$filtro .= isset($mensagem) ? " AND msn.mensagem = :mensagem" : "";
+			$filtro .= isset($token_user) ? " AND msn.token_user = :token_user" : "";			
+			$filtro .= isset($status) ? " AND msn.status = :status" : "";			
 
 			try {
 	            $sql = "SELECT *
 
-	                FROM messenger	                             
-	                WHERE id_messenger > :id_messenger
+	                FROM messenger msn	         
+	                INNER JOIN acess_user user ON user.token_user = msn.token_user             
+	                WHERE msn.id_messenger > :id_messenger
 	                $filtro
-	                group by id_messenger
-					ORDER BY data_final desc
+					ORDER BY msn.data_final desc
 	            ";
 
 	            $pdo = Conexao::getInstance()->prepare($sql);

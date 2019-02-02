@@ -14,13 +14,16 @@
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
 					  <li class="nav-item">
-					    <a class="nav-link" href="./">Início <span class="sr-only">(current)</span></a>
+					    <a class="nav-link" href="./inicio.php">Início <span class="sr-only">(current)</span></a>
 					  </li>
 					  <li class="nav-item">
 					    <a class="nav-link" href="./form_config_messenger.php">Gerenciar Mensagem</a>
 					  </li>
 					  <li class="nav-item">
 					    <a class="nav-link" href="./form_config_email.php">Gerenciar E-mail</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link" href="./form_config_grupo.php">Gerenciar Grupo</a>
 					  </li>
 					  <li class="nav-item">
 					    <a class="nav-link" href="#">Sair</a>
