@@ -1,8 +1,6 @@
 <?php
+    include_once("./verifica.php");
     include_once("./config/config.php");
-
-    session_start();
-    $_SESSION["token_user"] = '98f87249998b1a2991d346c96ddc9e1a';
 ?>
 
 <!doctype html>

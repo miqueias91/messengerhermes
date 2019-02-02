@@ -97,19 +97,21 @@
 	        }
 		}
 
-		public function cadastraDestinatario($nome_destinatario, $email_destinatario, $destinatario_grupo, $token_user){
+		public function cadastraDestinatario($nome_destinatario, $email_destinatario, $destinatario_grupo, $token_user, $telefone){
 			try {
 	            $sql = "INSERT INTO destinatario (
 	                id_destinatario, 
 	                nome_destinatario,
 					email_destinatario,
-					token_user
+					token_user,
+					telefone
 					)
 					VALUES (
 	                :id_destinatario, 
 	                :nome_destinatario,
 					:email_destinatario,
-					:token_user
+					:token_user,
+					:telefone
 					)
 
 	                ";
@@ -118,6 +120,7 @@
 	            $pdo->bindValue(":nome_destinatario", $nome_destinatario, PDO::PARAM_STR);
 	            $pdo->bindValue(":email_destinatario", $email_destinatario, PDO::PARAM_STR);
 	            $pdo->bindValue(":token_user", $token_user, PDO::PARAM_STR);
+	            $pdo->bindValue(":telefone", $telefone, PDO::PARAM_STR);
 	            $pdo->execute();
 
 	            $ultimo_id = Conexao::ultimoID();

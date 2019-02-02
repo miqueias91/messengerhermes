@@ -1,9 +1,7 @@
 <?php
+    include_once("./verifica.php");
     include_once("./config/config.php");
     include_once("$base/class/class.messenger.php");
-
-    session_start();
-    $_SESSION["token_user"] = '98f87249998b1a2991d346c96ddc9e1a';
 
     $msn = new Messenger();
     $arrayMessenger = $msn->buscaPeriodoMessenger($id_messenger, null, null, null, null, null, null, $token_user);

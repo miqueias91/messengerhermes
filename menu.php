@@ -26,7 +26,7 @@
 					    <a class="nav-link" href="./form_config_grupo.php">Gerenciar Grupo</a>
 					  </li>
 					  <li class="nav-item">
-					    <a class="nav-link" href="#">Sair</a>
+					    <a class="nav-link" href="./desloga.php">Sair</a>
 					  </li>
 					</ul>
 				</div>
