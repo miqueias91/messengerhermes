@@ -202,7 +202,7 @@
 	            $sql = "UPDATE destinatario 
 	            	SET
 	                nome_destinatario		= :nome_destinatario,
-	                email_destinatario 		= :email_destinatario
+	                email_destinatario 		= :email_destinatario,
 	                telefone 				= :telefone
 	                WHERE id_destinatario 	= :id_destinatario
 	                AND token_user 			= :token_user";
