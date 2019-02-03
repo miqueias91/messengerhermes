@@ -61,7 +61,7 @@
     <?php include_once("./menu.php");?>
 
         <div class="main container">
-        <h1>| GERENCIAR E-MAIL<button style="cursor:pointer; float: right;" title="Incluir E-mail" class="btn btn-outline-secondary" id="inserir" type="button"><i class="fas fa-plus-square"></i> Incluir E-mail</button></h1>
+        <h1>|&nbsp;GERENCIAR E-MAIL<button style="cursor:pointer; float: right;" title="Incluir E-mail" class="btn btn-outline-secondary" id="inserir" type="button"><i class="fas fa-plus-square"></i> Incluir E-mail</button></h1>
 
         <form method=post name='form' id='form' enctype='multipart/form-data' action="form_config_messenger.php">
             <input type="hidden" name="token_user" value="<?=$_SESSION['token_user']?>">
@@ -109,9 +109,9 @@
             }else{
 
         ?>
-        <div class="alert alert-danger" role="alert">
+        <div style="margin-top:50px" class="alert alert-danger" role="alert">
             <center>                
-                Nenhum email cadastrado! Deseja <a href="./insert_messenger.php">cadastrar?</a>
+                Nenhuma mensagem de e-mail cadastrada! Deseja <a href="./insert_messenger.php">cadastrar?</a>
             </center>
         </div>
         <?php
