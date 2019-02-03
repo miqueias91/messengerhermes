@@ -160,8 +160,8 @@
 			$filtro .= isset($idmessenger) ? " AND msn.id_messenger = :idmessenger" : "";
 			$filtro .= isset($data_inicio) ? " AND msn.data_inicio = :data_inicio" : "";
 			$filtro .= isset($data_final) ? " AND msn.data_final = :data_final" : "";
-			$filtro .= isset($periodo_data) ? " AND ( :periodo_data >= msn.data_inicio AND :periodo_data <= msn.data_final ) " : "";
-			$filtro .= isset($horario) ? " AND msn.horario = :horario" : "";
+			$filtro .= isset($periodo_data) ? " AND msn.data_inicio <= :periodo_data " : "";
+			$filtro .= isset($horario) ? " AND msn.horario <= :horario" : "";
 			$filtro .= isset($assunto) ? " AND msn.assunto = :assunto" : "";
 			$filtro .= isset($mensagem) ? " AND msn.mensagem = :mensagem" : "";
 			$filtro .= isset($token_user) ? " AND msn.token_user = :token_user" : "";			
@@ -216,34 +216,17 @@
 	        }
 		}
 
-		public function inativaMessengerAutomatico($data_final = null, $horario = null, $status = 'ativo'){
-			
-
-			$filtro = "";
-			$filtro .= isset($data_final) ? " AND data_final < :data_final " : "";
-			$filtro .= isset($horario) ? " AND horario < :horario " : "";
-			$filtro .= isset($status) ? " AND status = :status " : "";			
-
+		public function inativaMessenger($id_messenger){
 			try {
 	            $sql = "UPDATE messenger
 	            	SET status = :status_inativo
-	                WHERE id_messenger > :id_messenger
-	                $filtro
+	                WHERE id_messenger = :id_messenger
 	            ";
 
 	            $pdo = Conexao::getInstance()->prepare($sql);
 				
-	            $pdo->bindValue(':id_messenger', 0, PDO::PARAM_INT);
-	            $pdo->bindValue(":status_inativo", "inativo", PDO::PARAM_STR);
-	           	if ($data_final) {
-		            $pdo->bindValue(':data_final', $data_final, PDO::PARAM_STR);
-	            }     	
-	           	if ($horario) {
-		            $pdo->bindValue(':horario', $horario, PDO::PARAM_STR);
-	            }
-	            if ($status) {
-	            	$pdo->bindValue(":status", $status, PDO::PARAM_STR);
-	            }	         
+	            $pdo->bindValue(':id_messenger',$id_messenger, PDO::PARAM_INT);
+	            $pdo->bindValue(":status_inativo", "inativo", PDO::PARAM_STR);	         
 	            $pdo->execute();
 	        } 
 	        catch (Exception $e) {

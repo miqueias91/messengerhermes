@@ -17,6 +17,7 @@
     if ($arrayMessenger) {
         foreach ($arrayMessenger as $value) {
 
+
             $arrayDestinatarios = $msn->buscaMessengerDestinatario($value['id_messenger']);
             $mensagem = file_get_contents("$base/$value[mensagem]");
 
@@ -31,6 +32,7 @@
                 $log = $cada_destinatario['email_destinatario'].",".date("Y-m-d").",".date("H:i:s")."\n";
 
             }
+            $msn->inativaMessenger($value['id_messenger']);
         }
     }
 
