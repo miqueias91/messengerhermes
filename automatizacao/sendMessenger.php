@@ -1,7 +1,7 @@
 <?php
     error_reporting(1);
 
-	include_once("/var/www/html/messengerhermes/config/config.php");
+	include_once("../config/config.php");
 	include_once("$base/class/email/email.php");
 	include_once("$base/class/class.messenger.php");
     include_once("$base/class/class.destinatario.php");
