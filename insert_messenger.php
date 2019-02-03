@@ -139,7 +139,7 @@
   <body>
     <?php include_once("./menu.php");?>
     <div class="main container">
-        <h1>| CADASTRAR MENSAGEM</h1>
+        <h1>| CADASTRAR E-MAIL</h1>
 
         <form method=post name='form' id='form' enctype='multipart/form-data' action="register_messenger.php">
             <input type="hidden" name="token_user" value="<?=$_SESSION['token_user']?>">

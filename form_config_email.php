@@ -61,7 +61,7 @@
   <body>
     <?php include_once("./menu.php");?>
     <div class="main container">
-        <h1>| GERENCIAR E-MAIL<button style="cursor:pointer; float: right;" title="Incluir E-mail" class="btn btn-outline-secondary" id="inserir" type="button"><i class="fas fa-plus-square"></i> Incluir E-mail</button></h1>
+        <h1>| GERENCIAR CONTATOS<button style="cursor:pointer; float: right;" title="Incluir Contato" class="btn btn-outline-secondary" id="inserir" type="button"><i class="fas fa-plus-square"></i> Incluir Contato</button></h1>
 
         <form method=post name='form' id='form' enctype='multipart/form-data' action="form_config_email.php">
             <input type="hidden" name="token_user" value="<?=$_SESSION['token_user']?>">
@@ -73,9 +73,10 @@
                     <thead class="thead-dark">
                         <tr>
                             <th class="text-center" scope="col">AÇÃO</th>
-                            <th scope="col">CÓDIGO DESTINATÁRIO</th>
+                            <th scope="col">CÓDIGO CONTATO</th>
                             <th scope="col">NOME</th>
                             <th scope="col">E-MAIL</th>
+                            <th scope="col">TELEFONE</th>
                         </tr>
                       </thead>
                     <tbody>
@@ -91,6 +92,7 @@
                           <td title="<?=$row['nome_destinatario']?>"><?=$row['nome_destinatario']?></td>
                           
                           <td title="<?=$row['email_destinatario']?>"><?=$row['email_destinatario']?></td>
+                          <td title="<?=$row['telefone']?>"><?=$row['telefone']?></td>
                         </tr>                      
         <?php
           
@@ -105,7 +107,7 @@
         ?>
 	    <div class="alert alert-danger" role="alert">
 	    	<center>	    		
-				Nenhuma e-mail cadastrado! Deseja <a href="./insert_email.php">cadastrar?</a>
+				Nenhum contato cadastrado! Deseja <a href="./insert_email.php">cadastrar?</a>
 	    	</center>
 		</div>
         <?php

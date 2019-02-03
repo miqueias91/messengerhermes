@@ -61,7 +61,7 @@
     <?php include_once("./menu.php");?>
 
         <div class="main container">
-        <h1>| GERENCIAR MENSAGEM<button style="cursor:pointer; float: right;" title="Incluir Mensagem" class="btn btn-outline-secondary" id="inserir" type="button"><i class="fas fa-plus-square"></i> Incluir Mensagem</button></h1>
+        <h1>| GERENCIAR E-MAIL<button style="cursor:pointer; float: right;" title="Incluir E-mail" class="btn btn-outline-secondary" id="inserir" type="button"><i class="fas fa-plus-square"></i> Incluir E-mail</button></h1>
 
         <form method=post name='form' id='form' enctype='multipart/form-data' action="form_config_messenger.php">
             <input type="hidden" name="token_user" value="<?=$_SESSION['token_user']?>">
@@ -73,7 +73,7 @@
                     <thead class="thead-dark">
                         <tr>
                             <th class="text-center" scope="col">AÇÃO</th>
-                            <!--<th scope="col">CÓDIGO MENSAGEM</th>-->
+                            <!--<th scope="col">CÓDIGO email</th>-->
                             <th scope="col">ASSUNTO</th>
                             <th scope="col">DATA DE ENVIO</th>
                             <!--<th scope="col">DATA FINAL</th>-->
@@ -111,7 +111,7 @@
         ?>
         <div class="alert alert-danger" role="alert">
             <center>                
-                Nenhuma mensagem cadastrado! Deseja <a href="./insert_messenger.php">cadastrar?</a>
+                Nenhum email cadastrado! Deseja <a href="./insert_messenger.php">cadastrar?</a>
             </center>
         </div>
         <?php
