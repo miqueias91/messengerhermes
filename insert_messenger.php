@@ -199,7 +199,10 @@
             </div>
 
             <div class="form-group">
-                <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> <script type="text/javascript">
+               <!-- <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> -->
+
+                <script type="text/javascript" src="js/nicEdit-latest.js"></script> 
+                <script type="text/javascript">
                 //<![CDATA[
                         bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
                   //]]>
