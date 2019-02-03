@@ -7,6 +7,6 @@
 
 	$des->excluirDestinatario($token_user, $id_destinatario);
 
-	echo "<script>alert('Registro excluido com sucesso.'); window.location.href = './form_config_email.php';</script>";
+	echo "<script>alert('Registro excluido com sucesso.'); window.location.href = './form_config_contato.php';</script>";
 
 	die;

@@ -36,20 +36,20 @@
     <script type="text/javascript">
         function removeDestinatario(id_destinatario) {
             if(confirm('Deseja realmente excluir?')){
-                $("#form").attr('action','delete_email.php?id_destinatario='+id_destinatario);
+                $("#form").attr('action','delete_contato.php?id_destinatario='+id_destinatario);
                 $("#form").submit();
                 return true;
             }
             return false;
         }
         function editDestinatario(id_destinatario) {
-            $("#form").attr('action','edit_email.php?id_destinatario='+id_destinatario+'&token_user=<?=$_SESSION["token_user"]?>');
+            $("#form").attr('action','edit_contato.php?id_destinatario='+id_destinatario+'&token_user=<?=$_SESSION["token_user"]?>');
             $("#form").submit();
             return true;
         }
         $( document ).ready(function() {
             $('#inserir').click(function(){
-                $("#form").attr('action','insert_email.php');
+                $("#form").attr('action','insert_contato.php');
                 $("#form").submit();
                 return true;
             });
@@ -63,7 +63,7 @@
     <div class="main container">
         <h1>| GERENCIAR CONTATOS<button style="cursor:pointer; float: right;" title="Incluir Contato" class="btn btn-outline-secondary" id="inserir" type="button"><i class="fas fa-plus-square"></i> Incluir Contato</button></h1>
 
-        <form method=post name='form' id='form' enctype='multipart/form-data' action="form_config_email.php">
+        <form method=post name='form' id='form' enctype='multipart/form-data' action="form_config_contato.php">
             <input type="hidden" name="token_user" value="<?=$_SESSION['token_user']?>">
         <?php
             if ($destinatarios) {
@@ -107,7 +107,7 @@
         ?>
 	    <div class="alert alert-danger" role="alert">
 	    	<center>	    		
-				Nenhum contato cadastrado! Deseja <a href="./insert_email.php">cadastrar?</a>
+				Nenhum contato cadastrado! Deseja <a href="./insert_contato.php">cadastrar?</a>
 	    	</center>
 		</div>
         <?php

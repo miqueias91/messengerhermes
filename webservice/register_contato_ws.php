@@ -7,5 +7,5 @@
   	$grupo = array_filter ($grupo); 
 	$des->cadastraDestinatario($nome_destinatario, $email_destinatario, $grupo, $token_user);
 
-	echo "<script>alert('E-mail cadastro com sucesso.'); window.location.href = './insert_email.php';</script>";
+	echo "<script>alert('Dados cadastros com sucesso.'); window.location.href = './insert_contato.php';</script>";
 	die;

@@ -1,24 +1,15 @@
 <?php
     include_once("./verifica.php");
-    include_once("./config/config.php");
-    include_once("./class/class.destinatario.php");
+	include_once("./config/config.php");
     include_once("./class/class.grupo.php");
 
-    $des = new Destinatario();
     $gpo = new Grupo();
 
-
-    $destinatarios = $des->buscaDestinatario($id_destinatario, null, null, null, $token_user);
-    $gruposDestinatario = $des->buscaGrupoDestinatario(null, $id_destinatario);
-
     $grupos = $gpo->buscaGrupo(null, null, $token_user);
-
-    $destinatario = $destinatarios[0];
-
     $options_gpo = "";      
     if($grupos){
-        foreach ($grupos as $i) {
-            $options_gpo .= '<option value="'.$i['id_grupo'].'">'.$i['nome_grupo'].'</option>\\n';
+        foreach ($grupos as $row) {
+            $options_gpo .= '<option value="'.$row['id_grupo'].'">'.$row['nome_grupo'].'</option>\\n';
         }            
     }
 ?>
@@ -54,21 +45,13 @@
     <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
 
     <script type="text/javascript">
-        var num_grupo = 0;
         function removeGrupo(i){
             $('#destinatario_grupo'+i).remove();
         }
-
         $( document ).ready(function() {
             $('#telefone').mask('(99) 9 9999-9999');
-            <?php
-                if ($gruposDestinatario) {                    
-                    foreach ($gruposDestinatario as $key => $row) {
-                        echo "$('#grupo".$key."').val('".$row['id_grupo']."');";
-                    }
-                }
-            ?>
 
+            var num_grupo = 0;
             $('#maisgrupo').click(function(){
                 num_grupo++;
                 $('#grupoDestinatario').append(
@@ -84,7 +67,7 @@
                 );
             });
 
-            $('#alterar').click(function(){
+            $('#salvar').click(function(){
                 var retorno = true;
 
                 $(".grupo").each(function(){
@@ -109,14 +92,16 @@
                     retorno = false;
                 }else{
                     $('#email_destinatario').css('border-color','');
-                }     
+                }
 
                 if ($('#telefone').val() == '') {
                     $('#telefone').css('border-color','red');
                     retorno = false;
                 }else{
                     $('#telefone').css('border-color','');
-                }       
+                }
+
+            
 
                 if (!retorno) {
                     alert('Existem campos não preenchidos!');
@@ -138,73 +123,38 @@
   <body>
     <?php include_once("./menu.php");?>
     <div class="main container">
-        <h1>| EDITAR CONTATO</h1>
-        <form method=post name='form' id='form' enctype='multipart/form-data' action="update_email.php">
-            <input type="hidden" name="token_user" value="<?=$token_user?>">
-            <input type="hidden" name="id_destinatario" value="<?=$id_destinatario?>">
+        <h1>| CADASTRAR CONTATO</h1>
+        <form method=post name='form' id='form' enctype='multipart/form-data' action="register_contato.php">
+            <input type="hidden" name="token_user" value="<?=$_SESSION['token_user']?>">
 
             <div class="form-group">
                 <label for="nome_destinatario">Nome</label>
-                <input name="nome_destinatario" type="text" class="form-control" id="nome_destinatario" value="<?=$destinatario['nome_destinatario']?>">
+                <input name="nome_destinatario" type="text" class="form-control" id="nome_destinatario" placeholder="">
             </div>
 
             <div class="form-group">
                 <label for="email_destinatario">E-Mail</label>
-                <input type="email" name="email_destinatario" class="form-control" id="email_destinatario" value="<?=$destinatario['email_destinatario']?>">
+                <input type="email" name="email_destinatario" class="form-control" id="email_destinatario" placeholder="name@example.com">
             </div>
 
             <div class="form-group">
                 <label for="telefone">Telefone</label>
-                <input type="text" name="telefone" class="form-control" id="telefone" value="<?=$destinatario['telefone']?>">
+                <input type="text" name="telefone" class="form-control" id="telefone">
             </div> 
-            
 
             <div id="grupoDestinatario">
                 <label for="grupo0">Grupo</label>
 
-                <?php
-                    if ($gruposDestinatario) {
-                        foreach ($gruposDestinatario as $key => $row) {
-                            if ($key == 0) {          
-                ?>  
-                               <div class="input-group mb-3">
-                                  <select name="grupo[]" class="custom-select grupo" id="grupo<?=$key?>">
-                                    <option value="" selected>SELECIONE</option>
-                                    <?=$options_gpo?>
-                                  </select>
-                                </div>
-                <?php
-                            }       
-                            else{                                
-                ?> 
-                                <div class="input-group mb-3" id="destinatario_grupo<?=$key?>">
-                                  <div class="input-group-prepend">
-                                    <button onClick="removeGrupo('<?=$key?>')" style="cursor:pointer" title="Excluir" class="btn btn-outline-secondary" type="button"><i class="fas fa-trash-alt"></i></button>
-                                  </div>
-                                  <select name="grupo[]" class="custom-select grupo" id="grupo<?=$key?>" aria-label="Example select with button addon">
-                                    <option value="" selected>SELECIONE</option>
-                                    <?=$options_gpo?>
-                                  </select>
-                                </div>
-                <?php
-                            }
-                        }
-                    }
-                    else{                        
-                ?>
-                        <div class="input-group mb-3">
-                          <select name="grupo[]" class="custom-select grupo" id="grupo0">
-                            <option value="" selected>SELECIONE</option>
-                            <?=$options_gpo?>
-                          </select>
-                        </div>
-                <?php   
-                    }
-                ?>
+                <div class="input-group mb-3">
+                  <select name="grupo[]" class="custom-select grupo" id="grupo0">
+                    <option value="" selected>SELECIONE</option>
+                    <?=$options_gpo?>
+                  </select>
+                </div>
             </div>
 
             <button title="Adicionar Grupo" id="maisgrupo" class="btn btn-outline-secondary" type="button"><i class="fas fa-plus-circle"></i> Adicionar Grupo</button>
-            <button title="Salvar Alteração" id="alterar" class="btn btn-outline-secondary" type="button"><i class="fas fa-check-circle"></i> Salvar Alteração</button>
+            <button title="Salvar" id="salvar" class="btn btn-outline-secondary" type="button"><i class="fas fa-check-circle"></i> Salvar</button>
         </form>            	
     </div>
     <br>

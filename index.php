@@ -7,6 +7,6 @@
     <title>MESSENGER HERMES</title>
 </head>
 <frameset cols="*">
-	<frame name="messengerhermes" src="<?=$base_http;?>/index_.php"  scrolling="" >
+	<frame name="messengerhermes" src="<?=$base_http;?>/index_.php" >
 </frameset>
 </html>
