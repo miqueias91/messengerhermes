@@ -138,7 +138,7 @@
   <body>
     <?php include_once("./menu.php");?>
     <div class="main container">
-        <h1>| EDITAR CONTATO</h1>
+        <h1>|&nbsp;EDITAR CONTATO</h1>
         <form method=post name='form' id='form' enctype='multipart/form-data' action="update_contato.php">
             <input type="hidden" name="token_user" value="<?=$token_user?>">
             <input type="hidden" name="id_destinatario" value="<?=$id_destinatario?>">

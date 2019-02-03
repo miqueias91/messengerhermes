@@ -61,7 +61,7 @@
   <body>
     <?php include_once("./menu.php");?>
     <div class="main container">
-        <h1>| EDITAR GRUPO</h1>
+        <h1>|&nbsp;EDITAR GRUPO</h1>
         <form method=post name='form' id='form' enctype='multipart/form-data' action="update_grupo.php">
             <input type="hidden" name="token_user" value="<?=$token_user?>">
             <input type="hidden" name="id_grupo" value="<?=$id_grupo?>">

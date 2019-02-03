@@ -123,7 +123,7 @@
   <body>
     <?php include_once("./menu.php");?>
     <div class="main container">
-        <h1>| CADASTRAR CONTATO</h1>
+        <h1>|&nbsp;CADASTRAR CONTATO</h1>
         <form method=post name='form' id='form' enctype='multipart/form-data' action="register_contato.php">
             <input type="hidden" name="token_user" value="<?=$_SESSION['token_user']?>">
 
