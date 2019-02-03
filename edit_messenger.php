@@ -183,13 +183,13 @@
                 <br>
                 <div class="row">
                     <div class="col-md-4">                        
-                        <label for="datainicio">Data Inícial de Envio</label>
+                        <label for="datainicio">Data de Envio</label>
                         <input name="data_inicio" type="text" class="form-control data" id="datainicio" placeholder="DD/MM/AAAA" required value="<?=date("d/m/Y", strtotime($arrayMessenger['data_inicio']))?>">
                     </div>
-                    <div class="col-md-4">                        
+                    <!--<div class="col-md-4">                        
                         <label for="datafinal">Data Final de Envio</label>
                         <input name="data_final" type="text" class="form-control data" id="datafinal" placeholder="DD/MM/AAAA" required value="<?=date("d/m/Y", strtotime($arrayMessenger['data_final']))?>">
-                    </div>
+                    </div>-->
                     <div class="col-md-4">                        
                         <label for="horario">Horário de Envio</label>
                         <div class="row">
@@ -227,12 +227,14 @@
                                 </select>
                             </div>                            
                         </div>
-                    </div>                    
+                    </div>  
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput0">Assunto</label>
+                            <input name="assunto" type="text" class="form-control" id="exampleFormControlInput0" placeholder="Digite aqui o assunto do e-mail..." required value="<?=$arrayMessenger['assunto']?>">
+                        </div>                               
+                    </div>                               
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlInput0">Assunto</label>
-                <input name="assunto" type="text" class="form-control" id="exampleFormControlInput0" placeholder="Digite aqui o assunto do e-mail..." required value="<?=$arrayMessenger['assunto']?>">
             </div>
 
             <div class="form-group">

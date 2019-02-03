@@ -11,10 +11,6 @@
 		echo "<script>alert('Não foi possível enviar a mensagem, dado(s) incompleto(s).'); window.location.href = './edit_messenger.php?id_messenger=$id_messenger&token_user=$token_user';</script>";
 		die;
 	}
-	else if (empty($data_final)) {
-		echo "<script>alert('Não foi possível enviar a mensagem, dado(s) incompleto(s).'); window.location.href = './edit_messenger.php?id_messenger=$id_messenger&token_user=$token_user';</script>";
-		die;
-	}
 	else if (empty($assunto)) {
 		echo "<script>alert('Não foi possível enviar a mensagem, dado(s) incompleto(s).'); window.location.href = './edit_messenger.php?id_messenger=$id_messenger&token_user=$token_user';</script>";
 		die;
@@ -68,8 +64,7 @@
   		$data_inicio = explode("/", $data_inicio);
   		$data_inicio = $data_inicio[2]."-".$data_inicio[1]."-".$data_inicio[0];
 
-  		$data_final = explode("/", $data_final);
-  		$data_final = $data_final[2]."-".$data_final[1]."-".$data_final[0];
+  		$data_final = $data_inicio;
 
   		$horario = $hora.":".$minuto.":00";
 
