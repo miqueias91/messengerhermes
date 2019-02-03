@@ -138,7 +138,7 @@
   <body>
     <?php include_once("./menu.php");?>
     <div class="main container">
-        <h1>|&nbsp;EDITAR CONTATO</h1>
+        <h1>|&nbsp;EDITAR&nbsp;CONTATO</h1>
         <form method=post name='form' id='form' enctype='multipart/form-data' action="update_contato.php">
             <input type="hidden" name="token_user" value="<?=$token_user?>">
             <input type="hidden" name="id_destinatario" value="<?=$id_destinatario?>">
@@ -202,9 +202,11 @@
                     }
                 ?>
             </div>
+            <center>                
+                <button style="margin-top: 10px" title="Adicionar Grupo" id="maisgrupo" class="btn btn-outline-secondary" type="button"><i class="fas fa-plus-circle"></i> Adicionar Grupo</button>
+                <button style="margin-top: 10px" title="Salvar Alteração" id="alterar" class="btn btn-outline-secondary" type="button"><i class="fas fa-check-circle"></i> Salvar Alteração</button>
+            </center>
 
-            <button title="Adicionar Grupo" id="maisgrupo" class="btn btn-outline-secondary" type="button"><i class="fas fa-plus-circle"></i> Adicionar Grupo</button>
-            <button title="Salvar Alteração" id="alterar" class="btn btn-outline-secondary" type="button"><i class="fas fa-check-circle"></i> Salvar Alteração</button>
         </form>            	
     </div>
     <br>

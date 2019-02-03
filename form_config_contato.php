@@ -61,7 +61,7 @@
   <body>
     <?php include_once("./menu.php");?>
     <div class="main container">
-        <h1>|&nbsp;GERENCIAR CONTATOS<button style="cursor:pointer; float: right;" title="Incluir Contato" class="btn btn-outline-secondary" id="inserir" type="button"><i class="fas fa-plus-square"></i> Incluir Contato</button></h1>
+        <h1>|&nbsp;GERENCIAR&nbsp;CONTATOS<button style="cursor:pointer; float: right;" title="Incluir Contato" class="btn btn-outline-secondary" id="inserir" type="button"><i class="fas fa-plus-square"></i> Incluir Contato</button></h1>
 
         <form method=post name='form' id='form' enctype='multipart/form-data' action="form_config_contato.php">
             <input type="hidden" name="token_user" value="<?=$_SESSION['token_user']?>">

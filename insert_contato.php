@@ -123,7 +123,7 @@
   <body>
     <?php include_once("./menu.php");?>
     <div class="main container">
-        <h1>|&nbsp;CADASTRAR CONTATO</h1>
+        <h1>|&nbsp;CADASTRAR&nbsp;CONTATO</h1>
         <form method=post name='form' id='form' enctype='multipart/form-data' action="register_contato.php">
             <input type="hidden" name="token_user" value="<?=$_SESSION['token_user']?>">
 
@@ -153,8 +153,11 @@
                 </div>
             </div>
 
-            <button title="Adicionar Grupo" id="maisgrupo" class="btn btn-outline-secondary" type="button"><i class="fas fa-plus-circle"></i> Adicionar Grupo</button>
-            <button title="Salvar" id="salvar" class="btn btn-outline-secondary" type="button"><i class="fas fa-check-circle"></i> Salvar</button>
+            <center>                
+                <button style="margin-top: 10px" title="Adicionar Grupo" id="maisgrupo" class="btn btn-outline-secondary" type="button"><i class="fas fa-plus-circle"></i> Adicionar Grupo</button>
+                <button style="margin-top: 10px" title="Salvar" id="salvar" class="btn btn-outline-secondary" type="button"><i class="fas fa-check-circle"></i> Salvar</button>
+            </center>
+
         </form>            	
     </div>
     <br>

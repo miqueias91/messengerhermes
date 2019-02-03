@@ -61,7 +61,7 @@
   <body>
     <?php include_once("./menu.php");?>
     <div class="main container">
-        <h1>|&nbsp;EDITAR GRUPO</h1>
+        <h1>|&nbsp;EDITAR&nbsp;GRUPO</h1>
         <form method=post name='form' id='form' enctype='multipart/form-data' action="update_grupo.php">
             <input type="hidden" name="token_user" value="<?=$token_user?>">
             <input type="hidden" name="id_grupo" value="<?=$id_grupo?>">
@@ -71,7 +71,10 @@
                 <input name="nome_grupo" type="text" class="form-control" id="nome_grupo" placeholder="Nome do grupo..." value="<?=$grupos[0]['nome_grupo']?>">
             </div>
 
-            <button title="Salvar Alteração" id="salvar" class="btn btn-outline-secondary" type="button"><i class="fas fa-check-circle"></i> Salvar Alteração</button>
+            <center>                
+                <button style="margin-top: 10px" title="Salvar Alteração" id="salvar" class="btn btn-outline-secondary" type="button"><i class="fas fa-check-circle"></i> Salvar Alteração</button>
+            </center>
+
         </form>             
     </div>
     <br>

@@ -139,7 +139,7 @@
   <body>
     <?php include_once("./menu.php");?>
     <div class="main container">
-        <h1>|&nbsp;CADASTRAR E-MAIL</h1>
+        <h1>|&nbsp;CADASTRAR&nbsp;E-MAIL</h1>
 
         <form method=post name='form' id='form' enctype='multipart/form-data' action="register_messenger.php">
             <input type="hidden" name="token_user" value="<?=$_SESSION['token_user']?>">
@@ -232,11 +232,12 @@
                 <input type="hidden" name="grupo[]" class="form-control" id="idgrupo0">
               </div>
             </div>
+            <center>                
+                <button style="margin-top: 10px" title="Adicionar E-mail" id="maisemail" class="btn btn-outline-secondary" type="button"><i class="fas fa-plus-circle"></i> Adicionar E-mail</button>
+                <button style="margin-top: 10px" title="Adicionar Grupo" id="maisgrupo" class="btn btn-outline-secondary" type="button"><i class="fas fa-plus-circle"></i> Adicionar Grupo</button>
 
-            <button title="Adicionar E-mail" id="maisemail" class="btn btn-outline-secondary" type="button"><i class="fas fa-plus-circle"></i> Adicionar E-mail</button>
-            <button title="Adicionar Grupo" id="maisgrupo" class="btn btn-outline-secondary" type="button"><i class="fas fa-plus-circle"></i> Adicionar Grupo</button>
-
-            <button title="Enviar" id="enviar" class="btn btn-outline-secondary" type="submit"><i class="fas fa-check-circle"></i> Enviar</button>
+                <button style="margin-top: 10px" title="Enviar" id="enviar" class="btn btn-outline-secondary" type="submit"><i class="fas fa-check-circle"></i> Enviar</button>
+            </center>
         </form>
             	
     </div>

@@ -57,7 +57,7 @@
   <body>
     <?php include_once("./menu.php");?>
     <div class="main container">
-        <h1>|&nbsp;CADASTRAR GRUPO</h1>
+        <h1>|&nbsp;CADASTRAR&nbsp;GRUPO</h1>
         <form method=post name='form' id='form' enctype='multipart/form-data' action="register_grupo.php">
             <input type="hidden" name="token_user" value="<?=$_SESSION['token_user']?>">
 
@@ -65,8 +65,9 @@
                 <label for="nome_grupo">Nome</label>
                 <input name="nome_grupo" type="text" class="form-control" id="nome_grupo" placeholder="Nome do grupo...">
             </div>
-
-            <button title="Salvar" id="salvar" class="btn btn-outline-secondary" type="button"><i class="fas fa-check-circle"></i> Salvar</button>
+            <center>                
+                <button style="margin-top: 10px" title="Salvar" id="salvar" class="btn btn-outline-secondary" type="button"><i class="fas fa-check-circle"></i> Salvar</button>
+            </center>
         </form>             
     </div>
     <br>
