@@ -75,9 +75,9 @@
                             <th class="text-center" scope="col">AÇÃO</th>
                             <!--<th scope="col">CÓDIGO MENSAGEM</th>-->
                             <th scope="col">ASSUNTO</th>
-                            <th scope="col">DATA INÍCIAL</th>
-                            <th scope="col">DATA FINAL</th>
-                            <th scope="col">HORÁRIO</th>
+                            <th scope="col">DATA DE ENVIO</th>
+                            <!--<th scope="col">DATA FINAL</th>-->
+                            <th scope="col">HORÁRIO DE ENVIO</th>
                         </tr>
                       </thead>
                     <tbody>
@@ -85,7 +85,7 @@
                     foreach ($arrayMessenger as $row) {
         ?>    
                         <tr>
-                          <th scope="row">
+                          <th scope="row" align="center">
                             <button onClick="removeMessenger('<?=$row["id_messenger"]?>')" style="cursor:pointer" title="Excluir" class="btn btn-outline-secondary" type="button"><i class="fas fa-trash-alt"></i> Excluir</button> 
                             <button onClick="editMessenger('<?=$row["id_messenger"]?>')" style="cursor:pointer" title="Editar" class="btn btn-outline-secondary" type="button"><i class="fas fa-pen-square"></i> Editar</button></th>
                           <!--<td title="<?= str_pad($row['id_messenger'],7,'0', STR_PAD_LEFT)?>"><?= str_pad($row['id_messenger'],7,'0', STR_PAD_LEFT)?></td>-->
@@ -94,8 +94,8 @@
 
                           <td title="<?=date("d/m/Y", strtotime($row['data_inicio']))?>"><?=date("d/m/Y", strtotime($row['data_inicio']))?></td>
 
-                          <td title="<?=date("d/m/Y", strtotime($row['data_final']))?>"><?=date("d/m/Y", strtotime($row['data_final']))?></td>
-                          
+                          <!--<td title="<?=date("d/m/Y", strtotime($row['data_final']))?>"><?=date("d/m/Y", strtotime($row['data_final']))?></td>
+                          -->
                           <td title="<?=date("H:i", strtotime($row['horario']))?>"><?=date("H:i", strtotime($row['horario']))?></td>
                         </tr>                      
         <?php
