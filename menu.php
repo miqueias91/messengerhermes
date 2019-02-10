@@ -1,31 +1,16 @@
-	<header class="bg-light" style="height: 60px;padding-right: 70px;">
-		<nav class="navbar navbar-expand-lg navbar-light" style="float: right;">
-			<a class="navbar-brand" href="./">
-			<!--<img src="img/logo.png" width="70" height="50" class="d-inline-block align-top" alt="">-->
-			</a>
-
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-				  <li class="nav-item">
-				    <a class="nav-link" href="./inicio.php">Início <span class="sr-only">(current)</span></a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="./form_config_messenger.php">Gerenciar E-mail</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="./form_config_contato.php">Gerenciar Contatos</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="./form_config_grupo.php">Gerenciar Grupo</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="./desloga.php">Sair</a>
-				  </li>
-				</ul>
-			</div>
-		</nav>
-	</header>
+<table style="background: #065098;" align="center" valign="top" border="0" width="100%" cellspacing="0" cellspading="0">
+	<tr>
+		<td>
+		<table>
+			<tr>
+				<td align="right" style="left: 20px;" width="20%" height="28px"><a class="menu_principal" href="./inicio.php">Início</a></td>
+				<td width="20%" height="28px"><a class="menu_principal" href="./form_config_messenger.php">Gerenciar E-mail</a></td>
+				<td width="20%" height="28px"><a class="menu_principal" href="./form_config_contato.php">Gerenciar Contatos</a></td>
+				<td width="20%" height="28px"><a class="menu_principal" href="./form_config_grupo.php">Gerenciar Grupo</a></td>
+				<td width="20%" height="28px"><a class="menu_principal" href="./desloga.php">Sair</a></td>
+			</tr>
+		</table>
+			
+		</td>
+	</tr>
+</table>

@@ -1,6 +1,8 @@
 <?php
     include_once("./verifica.php");
     include_once("./config/config.php");
+    include_once("./menu.php");
+
 ?>
 
 <!doctype html>
@@ -55,18 +57,23 @@
     <title>MESSENGER HERMES</title>
   </head>
   <body>
-    <?php include_once("./menu.php");?>
-    <div class="main container">
-        <h1>|&nbsp;CADASTRAR&nbsp;GRUPO</h1>
+    <div id="cabecalho_titulo">
+        <div id="titulos">            
+            CADASTRAR&nbsp;GRUPO
+        </div>            
+    </div>
+    <br>
+
+    <div id="conteudo_sistema">
         <form method=post name='form' id='form' enctype='multipart/form-data' action="register_grupo.php">
             <input type="hidden" name="token_user" value="<?=$_SESSION['token_user']?>">
 
             <div class="form-group">
-                <label for="nome_grupo">Nome</label>
+                <label for="nome_grupo"><a class="minimo">Nome</a></label>
                 <input name="nome_grupo" type="text" class="form-control" id="nome_grupo" placeholder="Nome do grupo...">
             </div>
             <center>                
-                <button style="margin-top: 10px" title="Salvar" id="salvar" class="btn btn-outline-secondary" type="button"><i class="fas fa-check-circle"></i> Salvar</button>
+                <button style="margin-top: 10px" title="Salvar" id="salvar" class="pequeno_botao" type="button"><i class="fas fa-check-circle"></i> Salvar</button>
             </center>
         </form>             
     </div>

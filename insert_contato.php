@@ -2,6 +2,7 @@
     include_once("./verifica.php");
 	include_once("./config/config.php");
     include_once("./class/class.grupo.php");
+    include_once("./menu.php");
 
     $gpo = new Grupo();
 
@@ -121,29 +122,34 @@
     <title>MESSENGER HERMES</title>
   </head>
   <body>
-    <?php include_once("./menu.php");?>
-    <div class="main container">
-        <h1>|&nbsp;CADASTRAR&nbsp;CONTATO</h1>
+    <div id="cabecalho_titulo">
+        <div id="titulos">            
+            CADASTRAR&nbsp;CONTATO
+        </div>            
+    </div>
+    <br>
+
+    <div id="conteudo_sistema">
         <form method=post name='form' id='form' enctype='multipart/form-data' action="register_contato.php">
             <input type="hidden" name="token_user" value="<?=$_SESSION['token_user']?>">
 
             <div class="form-group">
-                <label for="nome_destinatario">Nome</label>
+                <label for="nome_destinatario"><a class="minimo">Nome</a></label>
                 <input name="nome_destinatario" type="text" class="form-control" id="nome_destinatario" placeholder="">
             </div>
 
             <div class="form-group">
-                <label for="email_destinatario">E-Mail</label>
+                <label for="email_destinatario"><a class="minimo">E-Mail</a></label>
                 <input type="email" name="email_destinatario" class="form-control" id="email_destinatario" placeholder="name@example.com">
             </div>
 
             <div class="form-group">
-                <label for="telefone">Telefone</label>
+                <label for="telefone"><a class="minimo">Telefone</a></label>
                 <input type="text" name="telefone" class="form-control" id="telefone">
             </div> 
 
             <div id="grupoDestinatario">
-                <label for="grupo0">Grupo</label>
+                <label for="grupo0"><a class="minimo">Grupo</a></label>
 
                 <div class="input-group mb-3">
                   <select name="grupo[]" class="custom-select grupo" id="grupo0">
@@ -154,8 +160,8 @@
             </div>
 
             <center>                
-                <button style="margin-top: 10px" title="Adicionar Grupo" id="maisgrupo" class="btn btn-outline-secondary" type="button"><i class="fas fa-plus-circle"></i> Adicionar Grupo</button>
-                <button style="margin-top: 10px" title="Salvar" id="salvar" class="btn btn-outline-secondary" type="button"><i class="fas fa-check-circle"></i> Salvar</button>
+                <button style="margin-top: 10px" title="Adicionar Grupo" id="maisgrupo" class="pequeno_botao" type="button"><i class="fas fa-plus-circle"></i> Adicionar Grupo</button>
+                <button style="margin-top: 10px" title="Salvar" id="salvar" class="pequeno_botao" type="button"><i class="fas fa-check-circle"></i> Salvar</button>
             </center>
 
         </form>            	

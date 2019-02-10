@@ -133,14 +133,16 @@
 	        }
 		}
 
-		public function buscaDestinatario($iddestinatario = null, $nome_destinatario = null, $email_destinatario = null, $destinatario_grupo = null, $token_user, $pesquisa = null){
+		public function buscaDestinatario($iddestinatario = null, $nome_destinatario = null, $email_destinatario = null, $destinatario_grupo = null, $token_user, $pesquisa = null, $limit = false, $inicio = null, $final = null){
 			$filtro = "";
 			$filtro .= isset($iddestinatario) ? " AND id_destinatario = :iddestinatario" : "";
 			$filtro .= isset($nome_destinatario) ? " AND nome_destinatario LIKE :nome_destinatario" : "";
 			$filtro .= isset($email_destinatario) ? " AND email_destinatario LIKE :email_destinatario" : "";
 			$filtro .= isset($destinatario_grupo) ? " AND destinatario_grupo LIKE :destinatario_grupo" : "";
 			$filtro .= isset($token_user) ? " AND token_user LIKE :token_user" : "";			
-			$filtro .= isset($pesquisa) ? " AND ( nome_destinatario LIKE :pesquisa OR email_destinatario LIKE :pesquisa )" : "";			
+			$filtro .= isset($pesquisa) ? " AND ( nome_destinatario LIKE :pesquisa OR email_destinatario LIKE :pesquisa )" : "";	
+
+			$limit = $limit	? " limit $inicio, $final" : "";	
 
 			try {
 	            $sql = "SELECT *
@@ -150,6 +152,7 @@
 	                $filtro
 	                group by id_destinatario
 					ORDER BY id_destinatario
+					$limit
 	            ";
 	            $pdo = Conexao::getInstance()->prepare($sql);
 				

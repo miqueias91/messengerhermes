@@ -9,10 +9,11 @@
 	        return self::$instance;
 	    }
 
-	    public function buscaGrupo($idgrupo = null, $nome_grupo = null, $token_user){			    
+	    public function buscaGrupo($idgrupo = null, $nome_grupo = null, $token_user, $limit = false, $inicio = null, $final = null){			    
 			$filtro = "";
 			$filtro .= isset($idgrupo) ? " AND id_grupo = :idgrupo" : "";
 			$filtro .= isset($nome_grupo) ? " AND nome_grupo LIKE :nome_grupo" : "";			
+			$limit = $limit	? " limit $inicio, $final" : "";	
 
 			try {
 	            $sql = "SELECT *
@@ -22,6 +23,7 @@
 	                $filtro
 	                group by id_grupo
 					ORDER BY id_grupo
+					$limit
 	            ";
 
 	            $pdo = Conexao::getInstance()->prepare($sql);

@@ -1,11 +1,18 @@
 <?php
     include_once("./verifica.php");
-	include_once("./config/config.php");
+    include_once("./config/config.php");
     include_once("./class/class.destinatario.php");
 
-    $des = new Destinatario();
+    include_once("./menu.php");
 
-    $destinatarios = $des->buscaDestinatario(null, null, null, null, $_SESSION["token_user"]);
+    $des = new Destinatario();
+    $pagina = 10;
+    $inicio = isset($inicio) ? $inicio : '0';
+    $final = isset($final) ? $final : $pagina;
+
+    $quantContatos = $des->buscaDestinatario(null, null, null, null, $_SESSION["token_user"], null);
+
+    $destinatarios = $des->buscaDestinatario(null, null, null, null, $_SESSION["token_user"], null, true, $inicio, $final);
 ?>
 
 <!doctype html>
@@ -59,46 +66,91 @@
     <title>MESSENGER HERMES</title>
   </head>
   <body>
-    <?php include_once("./menu.php");?>
-    <div class="main container">
-        <h1>|&nbsp;GERENCIAR&nbsp;CONTATOS<button style="cursor:pointer; float: right;" title="Incluir Contato" class="btn btn-outline-secondary" id="inserir" type="button"><i class="fas fa-plus-square"></i> Incluir Contato</button></h1>
+    <div id="cabecalho_titulo">
+        <div id="titulos">            
+            GERENCIAR&nbsp;CONTATOS
+        </div>            
+    </div>
+    <br>
 
+    <div id="conteudo_sistema">
+        <button style="cursor:pointer; float: right;" title="Incluir Contato" class="pequeno_botao" id="inserir" type="button"><i class="fas fa-plus-square"></i> Incluir Contato</button>
+        <br>
         <form method=post name='form' id='form' enctype='multipart/form-data' action="form_config_contato.php">
+                    <br>
+
             <input type="hidden" name="token_user" value="<?=$_SESSION['token_user']?>">
         <?php
             if ($destinatarios) {
         ?>
 
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th class="text-center" scope="col">AÇÃO</th>
-                            <th scope="col">CÓDIGO CONTATO</th>
-                            <th scope="col">NOME</th>
-                            <th scope="col">E-MAIL</th>
-                            <th scope="col">TELEFONE</th>
-                        </tr>
-                      </thead>
-                    <tbody>
+                <table width="100%" align="center">
+                    <tr style="background:grey;">
+                        <td align="center"><a class="minimo" style="color:white">AÇÃO</a></td>
+                        <td align="center"><a class="minimo" style="color:white">CÓDIGO CONTATO</a></td>
+                        <td align="center"><a class="minimo" style="color:white">NOME</a></td>
+                        <td align="center"><a class="minimo" style="color:white">E-MAIL</a></td>
+                        <td align="center"><a class="minimo" style="color:white">TELEFONE</a></td>
+                    </tr>
         <?php
                     foreach ($destinatarios as $row) {
         ?>    
-                        <tr>
-                          <th scope="row">
-                            <button onClick="removeDestinatario('<?=$row["id_destinatario"]?>')" style="cursor:pointer" title="Excluir" class="btn btn-outline-secondary" type="button"><i class="fas fa-trash-alt"></i> Excluir</button> 
-                            <button onClick="editDestinatario('<?=$row["id_destinatario"]?>')" style="cursor:pointer" title="Editar" class="btn btn-outline-secondary" type="button"><i class="fas fa-pen-square"></i> Editar</button></th>
-                          <td title="<?= str_pad($row['id_destinatario'],7,'0', STR_PAD_LEFT)?>"><?= str_pad($row['id_destinatario'],7,'0', STR_PAD_LEFT)?></td>
+                        <tr style="background: white; height: 20px;" >
+                          <td width="200px" align="center" style="border: 1px solid #F1F1F1">
+                            <button onClick="removeDestinatario('<?=$row["id_destinatario"]?>')" style="cursor:pointer" title="Excluir" class="pequeno_botao" type="button"><i class="fas fa-trash-alt"></i> Excluir</button> 
+                            <button onClick="editDestinatario('<?=$row["id_destinatario"]?>')" style="cursor:pointer" title="Editar" class="pequeno_botao" type="button"><i class="fas fa-pen-square"></i> Editar</button>
+                        </td>
+                          <td width="100px" align="center" title="<?= str_pad($row['id_destinatario'],7,'0', STR_PAD_LEFT)?>" style="border: 1px solid #F1F1F1"><?= str_pad($row['id_destinatario'],7,'0', STR_PAD_LEFT)?></td>
 
-                          <td title="<?=$row['nome_destinatario']?>"><?=$row['nome_destinatario']?></td>
+                          <td width="200px" align="center" title="<?=$row['nome_destinatario']?>" style="border: 1px solid #F1F1F1"><?=$row['nome_destinatario']?></td>
                           
-                          <td title="<?=$row['email_destinatario']?>"><?=$row['email_destinatario']?></td>
-                          <td title="<?=$row['telefone']?>"><?=$row['telefone']?></td>
+                          <td align="center" title="<?=$row['email_destinatario']?>" style="border: 1px solid #F1F1F1"><?=$row['email_destinatario']?></td>
+                          <td width="100px" align="center" title="<?=$row['telefone']?>" style="border: 1px solid #F1F1F1"><?=$row['telefone']?></td>
                         </tr>                      
         <?php
           
                     }
         ?>
-                    </tbody>
+                </table>
+                <br>
+                <table align="center" width="100%">
+                    <tr>
+                        <td align="center">
+                            <?php
+                                $registro_final = $inicio+$pagina > sizeof($quantContatos) ? sizeof($quantContatos) : $inicio+$pagina;
+                            ?>
+                            <a class="minimo">
+                                Listando de <?=$inicio;?> a <?=$registro_final;?> |
+                            <?= sizeof($quantContatos); ?> Registros | 
+                            </a>   
+
+                            <?php
+                                if ($inicio > 0) {
+                            ?>
+                                <a title="Anterior" class="minimo" href="./form_config_contato.php?inicio=<?=($inicio-$pagina)?>&final=<?=$pagina?>">&laquo; Anterior</a>
+                            <?php
+                                }else{
+                            ?>
+                                <a style="opacity:0.5" title="Anterior" class="minimo" href="#">&laquo; Anterior</a>
+                            <?php                                    
+                                }
+                            ?>
+
+                            <?php                                    
+                                if ($inicio+$pagina > sizeof($quantContatos)) {
+                            ?>
+                                <a style="opacity:0.5" title="Próximo" class="minimo" href="#"> | Próximo &raquo;</a>
+                            <?php
+                                    
+                                }else{
+                            ?>
+                                <a title="Próximo" class="minimo" href="./form_config_contato.php?inicio=<?=($inicio+$pagina)?>&final=<?=$pagina?>"> | Próximo &raquo;</a>
+                            <?php
+                                    
+                                }
+                            ?>
+                        </td>                        
+                    </tr>
                 </table>
         <?php
           

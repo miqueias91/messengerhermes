@@ -3,6 +3,7 @@
     include_once("./config/config.php");
     include_once("./class/class.destinatario.php");
     include_once("./class/class.grupo.php");
+    include_once("./menu.php");
 
     $des = new Destinatario();
     $gpo = new Grupo();
@@ -136,31 +137,36 @@
     <title>MESSENGER HERMES</title>
   </head>
   <body>
-    <?php include_once("./menu.php");?>
-    <div class="main container">
-        <h1>|&nbsp;EDITAR&nbsp;CONTATO</h1>
+    <div id="cabecalho_titulo">
+        <div id="titulos">            
+            EDITAR&nbsp;CONTATO
+        </div>            
+    </div>
+    <br>
+
+    <div id="conteudo_sistema">
         <form method=post name='form' id='form' enctype='multipart/form-data' action="update_contato.php">
             <input type="hidden" name="token_user" value="<?=$token_user?>">
             <input type="hidden" name="id_destinatario" value="<?=$id_destinatario?>">
 
             <div class="form-group">
-                <label for="nome_destinatario">Nome</label>
+                <label for="nome_destinatario"><a class="minimo">Nome</a></label>
                 <input name="nome_destinatario" type="text" class="form-control" id="nome_destinatario" value="<?=$destinatario['nome_destinatario']?>">
             </div>
 
             <div class="form-group">
-                <label for="email_destinatario">E-Mail</label>
+                <label for="email_destinatario"><a class="minimo">E-Mail</a></label>
                 <input type="email" name="email_destinatario" class="form-control" id="email_destinatario" value="<?=$destinatario['email_destinatario']?>">
             </div>
 
             <div class="form-group">
-                <label for="telefone">Telefone</label>
+                <label for="telefone"><a class="minimo">Telefone</a></label>
                 <input type="text" name="telefone" class="form-control" id="telefone" value="<?=$destinatario['telefone']?>">
             </div> 
             
 
             <div id="grupoDestinatario">
-                <label for="grupo0">Grupo</label>
+                <label for="grupo0"><a class="minimo">Grupo</a></label>
 
                 <?php
                     if ($gruposDestinatario) {
@@ -203,8 +209,8 @@
                 ?>
             </div>
             <center>                
-                <button style="margin-top: 10px" title="Adicionar Grupo" id="maisgrupo" class="btn btn-outline-secondary" type="button"><i class="fas fa-plus-circle"></i> Adicionar Grupo</button>
-                <button style="margin-top: 10px" title="Salvar Alteração" id="alterar" class="btn btn-outline-secondary" type="button"><i class="fas fa-check-circle"></i> Salvar Alteração</button>
+                <button style="margin-top: 10px" title="Adicionar Grupo" id="maisgrupo" class="pequeno_botao" type="button"><i class="fas fa-plus-circle"></i> Adicionar Grupo</button>
+                <button style="margin-top: 10px" title="Salvar Alteração" id="alterar" class="pequeno_botao" type="button"><i class="fas fa-check-circle"></i> Salvar Alteração</button>
             </center>
 
         </form>            	

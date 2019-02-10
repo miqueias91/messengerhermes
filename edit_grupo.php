@@ -2,6 +2,7 @@
     include_once("./verifica.php");
     include_once("./config/config.php");
     include_once("./class/class.grupo.php");
+    include_once("./menu.php");
 
     $gpo = new Grupo();
 
@@ -59,20 +60,25 @@
     <title>MESSENGER HERMES</title>
   </head>
   <body>
-    <?php include_once("./menu.php");?>
-    <div class="main container">
-        <h1>|&nbsp;EDITAR&nbsp;GRUPO</h1>
+    <div id="cabecalho_titulo">
+        <div id="titulos">            
+            EDITAR&nbsp;GRUPO
+        </div>            
+    </div>
+    <br>
+
+    <div id="conteudo_sistema">
         <form method=post name='form' id='form' enctype='multipart/form-data' action="update_grupo.php">
             <input type="hidden" name="token_user" value="<?=$token_user?>">
             <input type="hidden" name="id_grupo" value="<?=$id_grupo?>">
 
             <div class="form-group">
-                <label for="nome_grupo">Nome</label>
+                <label for="nome_grupo"><a class="minimo">Nome</a></label>
                 <input name="nome_grupo" type="text" class="form-control" id="nome_grupo" placeholder="Nome do grupo..." value="<?=$grupos[0]['nome_grupo']?>">
             </div>
 
             <center>                
-                <button style="margin-top: 10px" title="Salvar Alteração" id="salvar" class="btn btn-outline-secondary" type="button"><i class="fas fa-check-circle"></i> Salvar Alteração</button>
+                <button style="margin-top: 10px" title="Salvar Alteração" id="salvar" class="pequeno_botao" type="button"><i class="fas fa-check-circle"></i> Salvar Alteração</button>
             </center>
 
         </form>             

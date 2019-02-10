@@ -1,5 +1,7 @@
 <?php
     include_once("./verifica.php");
+    include_once("./menu.php");
+
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -28,8 +30,6 @@
     <title>MESSENGER HERMES</title>
   </head>
   <body>
-    <?php include_once("./menu.php");?>
-
 
   </body>
 </html>

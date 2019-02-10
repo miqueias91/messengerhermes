@@ -1,7 +1,9 @@
 <?php
     include_once("./verifica.php");
-	include_once("./config/config.php");
+
+    include_once("./config/config.php");
     include_once("$base/class/class.messenger.php");
+    include_once("./menu.php");
 
     $msn = new Messenger();
     $arrayMessenger = $msn->buscaPeriodoMessenger(null, null, null, null, null, null, null, $_SESSION["token_user"]);
@@ -58,10 +60,15 @@
     <title>MESSENGER HERMES</title>
   </head>
   <body>
-    <?php include_once("./menu.php");?>
+    <div id="cabecalho_titulo">
+        <div id="titulos">            
+            GERENCIAR&nbsp;E-MAIL
+        </div>            
+    </div>
+    <br>
 
-        <div class="main container">
-        <h1>|&nbsp;GERENCIAR E-MAIL<button style="cursor:pointer; float: right;" title="Incluir E-mail" class="btn btn-outline-secondary" id="inserir" type="button"><i class="fas fa-plus-square"></i> Incluir E-mail</button></h1>
+    <div id="conteudo_sistema">
+        <button style="cursor:pointer; float: right;" title="Incluir E-mail" class="pequeno_botao" id="inserir" type="button"><i class="fas fa-plus-square"></i> Incluir E-mail</button>
 
         <form method=post name='form' id='form' enctype='multipart/form-data' action="form_config_messenger.php">
             <input type="hidden" name="token_user" value="<?=$_SESSION['token_user']?>">
@@ -69,34 +76,25 @@
             if ($arrayMessenger) {
         ?>
 
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th class="text-center" scope="col">AÇÃO</th>
-                            <!--<th scope="col">CÓDIGO email</th>-->
-                            <th scope="col">ASSUNTO</th>
-                            <th scope="col">DATA DE ENVIO</th>
-                            <!--<th scope="col">DATA FINAL</th>-->
-                            <th scope="col">HORÁRIO DE ENVIO</th>
-                        </tr>
-                      </thead>
-                    <tbody>
+                <table width="100%" align="center">
+                    <tr style="background:grey;">
+                        <td align="center"><a class="minimo" style="color:white">AÇÃO</a></td>
+                        <td align="center"><a class="minimo" style="color:white">ASSUNTO</a></td>
+                        <td align="center"><a class="minimo" style="color:white">DATA DE ENVIO</a></td>
+                        <td align="center"><a class="minimo" style="color:white">HORÁRIO DE ENVIO</a></td>
+                    </tr>
         <?php
                     foreach ($arrayMessenger as $row) {
         ?>    
-                        <tr>
-                          <th scope="row" align="center">
-                            <button onClick="removeMessenger('<?=$row["id_messenger"]?>')" style="cursor:pointer" title="Excluir" class="btn btn-outline-secondary" type="button"><i class="fas fa-trash-alt"></i> Excluir</button> 
-                            <button onClick="editMessenger('<?=$row["id_messenger"]?>')" style="cursor:pointer" title="Editar" class="btn btn-outline-secondary" type="button"><i class="fas fa-pen-square"></i> Editar</button></th>
-                          <!--<td title="<?= str_pad($row['id_messenger'],7,'0', STR_PAD_LEFT)?>"><?= str_pad($row['id_messenger'],7,'0', STR_PAD_LEFT)?></td>-->
+                        <tr style="background: white; height: 20px;" >
+                          <td width="200px" align="center" style="border: 1px solid #F1F1F1">
+                            <button onClick="removeMessenger('<?=$row["id_messenger"]?>')" style="cursor:pointer" title="Excluir" class="pequeno_botao" type="button"><i class="fas fa-trash-alt"></i> Excluir</button> 
+                            <button onClick="editMessenger('<?=$row["id_messenger"]?>')" style="cursor:pointer" title="Editar" class="pequeno_botao" type="button"><i class="fas fa-pen-square"></i> Editar</button></td>
 
-                          <td title="<?=$row['assunto']?>"><?=$row['assunto']?></td>
+                          <td align="center" style="border: 1px solid #F1F1F1" title="<?=$row['assunto']?>"><?=$row['assunto']?></td>
 
-                          <td title="<?=date("d/m/Y", strtotime($row['data_inicio']))?>"><?=date("d/m/Y", strtotime($row['data_inicio']))?></td>
-
-                          <!--<td title="<?=date("d/m/Y", strtotime($row['data_final']))?>"><?=date("d/m/Y", strtotime($row['data_final']))?></td>
-                          -->
-                          <td title="<?=date("H:i", strtotime($row['horario']))?>"><?=date("H:i", strtotime($row['horario']))?></td>
+                          <td width="200px" align="center" style="border: 1px solid #F1F1F1" title="<?=date("d/m/Y", strtotime($row['data_inicio']))?>"><?=date("d/m/Y", strtotime($row['data_inicio']))?></td>
+                          <td width="200px" align="center" style="border: 1px solid #F1F1F1" title="<?=date("H:i", strtotime($row['horario']))?>"><?=date("H:i", strtotime($row['horario']))?></td>
                         </tr>                      
         <?php
           

@@ -1,6 +1,8 @@
 <?php
     include_once("./verifica.php");
     include_once("./config/config.php");
+    include_once("./menu.php");
+
     include_once("$base/class/class.messenger.php");
 
     $msn = new Messenger();
@@ -158,10 +160,14 @@
     <title>MESSENGER HERMES</title>
   </head>
   <body>
-    <?php include_once("./menu.php");?>
-    <div class="main container">
-        <h1>|&nbsp;EDITAR&nbsp;E-MAIL</h1>
+    <div id="cabecalho_titulo">
+        <div id="titulos">            
+            EDITAR&nbsp;E-MAIL
+        </div>            
+    </div>
+    <br>
 
+    <div id="conteudo_sistema">
         <form method=post name='form' id='form' enctype='multipart/form-data' action="update_messenger.php">
             <input type="hidden" name="token_user" value="<?=$_SESSION['token_user']?>">
             <input type="hidden" name="id_messenger" value="<?=$id_messenger?>">
@@ -169,11 +175,11 @@
             <div class="form-group">
                 <div class="row">
                     <!--<div class="col-md-4">   
-                        <label>CÓDIGO MENSAGEM</label>                     
+                        <label><a class="minimo">CÓDIGO MENSAGEM</a></label>                     
                         <input disabled type="text" class="form-control" value="<?= str_pad($arrayMessenger['id_messenger'],7,'0', STR_PAD_LEFT)?>">
                     </div>-->
                     <div class="col-md-4">   
-                        <label>STATUS</label>   
+                        <label><a class="minimo">STATUS</a></label>   
                             <select class="form-control" id="status" name="status">
                                 <option value="ativo">ATIVO</option>
                                 <option value="inativo">INATIVO</option>
@@ -183,15 +189,15 @@
                 <br>
                 <div class="row">
                     <div class="col-md-4">                        
-                        <label for="datainicio">Data de Envio</label>
+                        <label for="datainicio"><a class="minimo">Data de Envio</a></label>
                         <input name="data_inicio" type="text" class="form-control data" id="datainicio" placeholder="DD/MM/AAAA" required value="<?=date("d/m/Y", strtotime($arrayMessenger['data_inicio']))?>">
                     </div>
                     <!--<div class="col-md-4">                        
-                        <label for="datafinal">Data Final de Envio</label>
+                        <label for="datafinal">Data Final de Envio</a></label>
                         <input name="data_final" type="text" class="form-control data" id="datafinal" placeholder="DD/MM/AAAA" required value="<?=date("d/m/Y", strtotime($arrayMessenger['data_final']))?>">
                     </div>-->
                     <div class="col-md-4">                        
-                        <label for="horario">Horário de Envio</label>
+                        <label for="horario"><a class="minimo">Horário de Envio</a></label>
                         <div class="row">
                             <div class="col-md-4">                                
                                 <select class="form-control" id="hora" name="hora">
@@ -230,7 +236,7 @@
                     </div>  
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleFormControlInput0">Assunto</label>
+                            <label for="exampleFormControlInput0"><a class="minimo">Assunto</a></label>
                             <input name="assunto" type="text" class="form-control" id="exampleFormControlInput0" placeholder="Digite aqui o assunto do e-mail..." required value="<?=$arrayMessenger['assunto']?>">
                         </div>                               
                     </div>                               
@@ -245,13 +251,13 @@
                         bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
                   //]]>
                   </script>
-                <label for="mensagem">Mensagem</label>
+                <label for="mensagem"><a class="minimo">Mensagem</a></label>
                 <textarea name="mensagem" class="form-control" id="mensagem" rows="10"><?=$mensagem?></textarea>
             </div>
 
             <div id="grupoemail">
               <div class="form-group">
-                <label for="destinatario0">Destinatário</label>
+                <label for="destinatario0"><a class="minimo">Destinatário</a></label>
 
                 <?php
                     if ($arrayDestinatarios) {
@@ -281,7 +287,7 @@
 
             <div id="grupoDestinatario">
               <div class="form-group">
-                <label for="grupo0">Grupos</label>
+                <label for="grupo0"><a class="minimo">Grupos</a></label>
 
                 <input type="text" linha='0' class="form-control grupo" id="nome_grupo0">
 
@@ -289,10 +295,10 @@
               </div>
             </div>
             <center>                
-                <button style="margin-top: 10px" title="Adicionar E-mail" id="maisemail" class="btn btn-outline-secondary" type="button"><i class="fas fa-plus-circle"></i> Adicionar E-mail</button>
-                <button style="margin-top: 10px" title="Adicionar Grupo" id="maisgrupo" class="btn btn-outline-secondary" type="button"><i class="fas fa-plus-circle"></i> Adicionar Grupo</button>
+                <button style="margin-top: 10px" title="Adicionar E-mail" id="maisemail" class="pequeno_botao" type="button"><i class="fas fa-plus-circle"></i> Adicionar E-mail</button>
+                <button style="margin-top: 10px" title="Adicionar Grupo" id="maisgrupo" class="pequeno_botao" type="button"><i class="fas fa-plus-circle"></i> Adicionar Grupo</button>
 
-                <button style="margin-top: 10px" title="Salvar Alterações" id="enviar" class="btn btn-outline-secondary" type="submit"><i class="fas fa-check-circle"></i> Salvar Alterações</button>
+                <button style="margin-top: 10px" title="Salvar Alterações" id="enviar" class="pequeno_botao" type="submit"><i class="fas fa-check-circle"></i> Salvar Alterações</button>
             </center>
         </form>
             	
