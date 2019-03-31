@@ -6,7 +6,7 @@
 
         public static function getInstance() {
             $host   = 'localhost';
-            $dbName = 'id8571012_db_messengerhermes';
+            $dbName = 'db_messengerhermes';
             $login  = 'root';
             $senha  = '123';
             try {
